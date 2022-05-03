@@ -1,0 +1,1 @@
+﻿global using RewardsPlus.Domain.Common.Contracts;

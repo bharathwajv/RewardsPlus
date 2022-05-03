@@ -1,0 +1,17 @@
+global using Ardalis.Specification;
+global using FluentValidation;
+global using RewardsPlus.Application.Common.Events;
+global using RewardsPlus.Application.Common.Exceptions;
+global using RewardsPlus.Application.Common.FileStorage;
+global using RewardsPlus.Application.Common.Interfaces;
+global using RewardsPlus.Application.Common.Models;
+global using RewardsPlus.Application.Common.Persistence;
+global using RewardsPlus.Application.Common.Specification;
+global using RewardsPlus.Application.Common.Validation;
+global using RewardsPlus.Domain.Catalog;
+global using RewardsPlus.Domain.Common;
+global using RewardsPlus.Domain.Common.Contracts;
+global using RewardsPlus.Shared.Notifications;
+global using MediatR;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
