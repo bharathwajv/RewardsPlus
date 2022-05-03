@@ -1,4 +1,4 @@
-using RewardsPlus.Application.Multitenancy;
+using RewardsPlus.Application.Token;
 
 namespace RewardsPlus.Host.Controllers.Multitenancy;
 

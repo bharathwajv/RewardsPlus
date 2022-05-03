@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant;
 using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Application.Multitenancy;
+using RewardsPlus.Application.Token;
 using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
 using Mapster;

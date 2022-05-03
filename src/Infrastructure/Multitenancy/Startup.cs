@@ -1,4 +1,4 @@
-using RewardsPlus.Application.Multitenancy;
+using RewardsPlus.Application.Token;
 using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Shared.Authorization;
 using RewardsPlus.Shared.Multitenancy;

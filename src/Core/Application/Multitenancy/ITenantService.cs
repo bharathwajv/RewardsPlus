@@ -1,4 +1,4 @@
-﻿namespace RewardsPlus.Application.Multitenancy;
+﻿namespace RewardsPlus.Application.Token;
 
 public interface ITenantService
 {

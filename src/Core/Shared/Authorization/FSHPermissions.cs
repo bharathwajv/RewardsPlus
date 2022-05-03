@@ -13,6 +13,7 @@ public static class FSHAction
     public const string Generate = nameof(Generate);
     public const string Clean = nameof(Clean);
     public const string UpgradeSubscription = nameof(UpgradeSubscription);
+    public const string GiftToken = nameof(GiftToken);
 }
 
 public static class FSHResource
@@ -26,6 +27,7 @@ public static class FSHResource
     public const string RoleClaims = nameof(RoleClaims);
     public const string Products = nameof(Products);
     public const string Brands = nameof(Brands);
+    public const string Tokens = nameof(Tokens);
 }
 
 public static class FSHPermissions
@@ -64,7 +66,9 @@ public static class FSHPermissions
         new("View Tenants", FSHAction.View, FSHResource.Tenants, IsRoot: true),
         new("Create Tenants", FSHAction.Create, FSHResource.Tenants, IsRoot: true),
         new("Update Tenants", FSHAction.Update, FSHResource.Tenants, IsRoot: true),
-        new("Upgrade Tenant Subscription", FSHAction.UpgradeSubscription, FSHResource.Tenants, IsRoot: true)
+        new("Upgrade Tenant Subscription", FSHAction.UpgradeSubscription, FSHResource.Tenants, IsRoot: true),
+        new("View Tokens", FSHAction.View, FSHResource.Tokens),
+        new("GiftToken to other users", FSHAction.GiftToken, FSHResource.Tokens, IsBasic: true), // basic users too can gift tokens to other users
     };
 
     public static IReadOnlyList<FSHPermission> All { get; } = new ReadOnlyCollection<FSHPermission>(_all);
