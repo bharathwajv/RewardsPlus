@@ -80,7 +80,7 @@ internal class CashierService : ICashierService
 
         if (curentUserTokenInfo == null)
         {
-            _context.Tokens?.AddAsync(new Token(request.Amount, _currentUser.GetUserId().ToString(), _currentUser.GetUserEmail()), cancellationToken);
+            _context.Tokens?.AddAsync(new Token(request.Amount, _currentUser.GetUserId().ToString(), _currentUser?.GetUserEmail()), cancellationToken);
         }
         else
         {
@@ -117,4 +117,18 @@ internal class CashierService : ICashierService
             throw new Exception("Insufficient balance");
         }
     }
+
+    //seed for devlopment
+    public async Task<string> SeedAsync(string seedUserEmail, string seedUserId, double amountToSeed)
+    {
+        var curentUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == seedUserEmail);
+
+        if (curentUserTokenInfo == null)
+        {
+            _context.Tokens?.AddAsync(new Token(amountToSeed, seedUserId, seedUserEmail));
+            await _context.SaveChangesAsync();
+        }
+        return string.Empty;
+    }
+
 }

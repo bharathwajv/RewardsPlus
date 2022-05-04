@@ -123,7 +123,7 @@ internal class ApplicationDbSeeder
             await _userManager.AddToRoleAsync(adminUser, FSHRoles.Admin);
         }
 
-        // buy some cash for admin - only for devlopment
-        await _cashierService.BuyAsync(new BuyTokensRequest() { Amount = 10000.00 }, CancellationToken.None);
+        // buy some cash for admin - only for devlopment - OFD
+        await _cashierService.SeedAsync(adminUser.Email, adminUser.Id, 10000.00);
     }
 }

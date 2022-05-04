@@ -6,14 +6,24 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Ardalis.Specification" Version="6.0.1" />
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
-        <PackageReference Include="Mapster" Version="7.3.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.0" />
+        <PackageReference Include="Mapster" Version="7.4.0-pre02" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0-preview.3.22175.4" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.0-preview.3.22178.4" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Domain\Domain.csproj" />
         <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Update="Roslynator.Analyzers" Version="4.1.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.435">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 </Project>

@@ -8,4 +8,5 @@ public interface ICashierService : ITransientService
     Task<string> GiftAsync(GiftTokensRequest request, CancellationToken cancellationToken);
     Task<string> RedeemAsync(RedeemTokensRequest request, CancellationToken cancellationToken);
     Task<string> BuyAsync(BuyTokensRequest request, CancellationToken cancellationToken);
+    Task<string> SeedAsync(string seedUserEmail, string seedUserId, double amountToSeed);
 }
