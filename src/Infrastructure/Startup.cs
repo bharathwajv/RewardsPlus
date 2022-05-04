@@ -1,4 +1,9 @@
-using System.Reflection;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using RewardsPlus.Infrastructure.Auth;
 using RewardsPlus.Infrastructure.BackgroundJobs;
 using RewardsPlus.Infrastructure.Caching;
@@ -15,12 +20,7 @@ using RewardsPlus.Infrastructure.OpenApi;
 using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
 using RewardsPlus.Infrastructure.SecurityHeaders;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace RewardsPlus.Infrastructure;
 

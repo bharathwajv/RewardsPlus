@@ -1,10 +1,10 @@
 using Finbuckle.MultiTenant;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Domain.Catalog;
 using RewardsPlus.Infrastructure.Persistence.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace RewardsPlus.Infrastructure.Persistence.Context;
 

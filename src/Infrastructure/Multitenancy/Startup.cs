@@ -1,12 +1,12 @@
-using RewardsPlus.Application.Token;
-using RewardsPlus.Infrastructure.Persistence;
-using RewardsPlus.Shared.Authorization;
-using RewardsPlus.Shared.Multitenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
+using RewardsPlus.Application.Token;
+using RewardsPlus.Infrastructure.Persistence;
+using RewardsPlus.Shared.Authorization;
+using RewardsPlus.Shared.Multitenancy;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 

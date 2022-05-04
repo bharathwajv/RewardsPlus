@@ -1,9 +1,9 @@
-﻿using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Infrastructure.Common;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
+using RewardsPlus.Application.Common.Persistence;
+using RewardsPlus.Infrastructure.Common;
 using System.Data.SqlClient;
 
 namespace RewardsPlus.Infrastructure.Persistence.ConnectionString;

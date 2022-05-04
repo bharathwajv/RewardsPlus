@@ -1,4 +1,3 @@
-using RewardsPlus.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -9,6 +8,7 @@ using HangfireBasicAuthenticationFilter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Infrastructure.Common;
 using Serilog;
 
 namespace RewardsPlus.Infrastructure.BackgroundJobs;

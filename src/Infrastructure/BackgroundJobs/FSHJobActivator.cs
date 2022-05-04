@@ -1,11 +1,11 @@
 ﻿using Finbuckle.MultiTenant;
+using Hangfire;
+using Hangfire.Server;
+using Microsoft.Extensions.DependencyInjection;
 using RewardsPlus.Infrastructure.Auth;
 using RewardsPlus.Infrastructure.Common;
 using RewardsPlus.Infrastructure.Multitenancy;
 using RewardsPlus.Shared.Multitenancy;
-using Hangfire;
-using Hangfire.Server;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace RewardsPlus.Infrastructure.BackgroundJobs;
 

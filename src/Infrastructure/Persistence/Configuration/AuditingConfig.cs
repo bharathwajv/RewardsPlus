@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
-using RewardsPlus.Infrastructure.Auditing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RewardsPlus.Infrastructure.Auditing;
 
 namespace RewardsPlus.Infrastructure.Persistence.Configuration;
 

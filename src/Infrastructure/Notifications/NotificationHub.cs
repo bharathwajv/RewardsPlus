@@ -1,9 +1,9 @@
 ﻿using Finbuckle.MultiTenant;
-using RewardsPlus.Application.Common.Exceptions;
-using RewardsPlus.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Common.Exceptions;
+using RewardsPlus.Application.Common.Interfaces;
 
 namespace RewardsPlus.Infrastructure.Notifications;
 

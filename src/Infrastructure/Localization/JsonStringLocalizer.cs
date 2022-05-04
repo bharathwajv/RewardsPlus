@@ -1,8 +1,8 @@
-﻿using System.Globalization;
-using RewardsPlus.Application.Common.Caching;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RewardsPlus.Application.Common.Caching;
+using System.Globalization;
 
 namespace RewardsPlus.Infrastructure.Localization;
 

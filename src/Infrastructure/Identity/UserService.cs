@@ -1,6 +1,11 @@
 using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using Finbuckle.MultiTenant;
+using Mapster;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Caching;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Exceptions;
@@ -15,11 +20,6 @@ using RewardsPlus.Infrastructure.Auth;
 using RewardsPlus.Infrastructure.Mailing;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Shared.Authorization;
-using Mapster;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

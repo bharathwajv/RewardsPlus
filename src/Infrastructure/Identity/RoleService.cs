@@ -1,4 +1,8 @@
 using Finbuckle.MultiTenant;
+using Mapster;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Interfaces;
@@ -8,10 +12,6 @@ using RewardsPlus.Domain.Identity;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Shared.Authorization;
 using RewardsPlus.Shared.Multitenancy;
-using Mapster;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

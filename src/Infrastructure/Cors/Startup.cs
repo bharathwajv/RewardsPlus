@@ -1,7 +1,7 @@
-﻿using RewardsPlus.Infrastructure.Common.Settings;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Infrastructure.Common.Settings;
 
 namespace RewardsPlus.Infrastructure.Cors;
 

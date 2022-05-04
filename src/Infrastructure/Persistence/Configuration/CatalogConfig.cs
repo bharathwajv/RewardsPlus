@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
-using RewardsPlus.Domain.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RewardsPlus.Domain.Catalog;
 
 namespace RewardsPlus.Infrastructure.Persistence.Configuration;
 

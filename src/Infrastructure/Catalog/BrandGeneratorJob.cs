@@ -1,15 +1,15 @@
 ﻿using Ardalis.Specification;
-using RewardsPlus.Application.Catalog.Brands;
-using RewardsPlus.Application.Common.Interfaces;
-using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Domain.Catalog;
-using RewardsPlus.Shared.Notifications;
 using Hangfire;
 using Hangfire.Console.Extensions;
 using Hangfire.Console.Progress;
 using Hangfire.Server;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Catalog.Brands;
+using RewardsPlus.Application.Common.Interfaces;
+using RewardsPlus.Application.Common.Persistence;
+using RewardsPlus.Domain.Catalog;
+using RewardsPlus.Shared.Notifications;
 
 namespace RewardsPlus.Infrastructure.Catalog;
 

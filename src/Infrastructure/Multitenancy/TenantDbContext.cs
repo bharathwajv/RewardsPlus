@@ -1,6 +1,6 @@
 ﻿using Finbuckle.MultiTenant.Stores;
-using RewardsPlus.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
+using RewardsPlus.Infrastructure.Persistence.Configuration;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 

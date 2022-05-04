@@ -1,6 +1,6 @@
-using System.Linq.Expressions;
-using RewardsPlus.Application.Common.Interfaces;
 using Hangfire;
+using RewardsPlus.Application.Common.Interfaces;
+using System.Linq.Expressions;
 
 namespace RewardsPlus.Infrastructure.BackgroundJobs;
 

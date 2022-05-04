@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant;
+using Microsoft.AspNetCore.SignalR;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Shared.Notifications;
-using Microsoft.AspNetCore.SignalR;
 using static RewardsPlus.Shared.Notifications.NotificationConstants;
 
 namespace RewardsPlus.Infrastructure.Notifications;

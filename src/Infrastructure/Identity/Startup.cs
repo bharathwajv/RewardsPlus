@@ -1,6 +1,6 @@
-using RewardsPlus.Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Infrastructure.Persistence.Context;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

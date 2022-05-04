@@ -1,5 +1,5 @@
-﻿using RewardsPlus.Infrastructure.Middleware;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using RewardsPlus.Infrastructure.Middleware;
 
 namespace RewardsPlus.Host.Controllers;
 

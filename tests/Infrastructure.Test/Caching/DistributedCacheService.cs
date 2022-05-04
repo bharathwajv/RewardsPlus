@@ -1,8 +1,8 @@
-﻿using RewardsPlus.Infrastructure.Common.Services;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
+using RewardsPlus.Infrastructure.Common.Services;
 
 namespace Infrastructure.Test.Caching;
 

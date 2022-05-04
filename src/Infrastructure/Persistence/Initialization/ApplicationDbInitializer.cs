@@ -1,7 +1,7 @@
 using Finbuckle.MultiTenant;
-using RewardsPlus.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Infrastructure.Persistence.Context;
 
 namespace RewardsPlus.Infrastructure.Persistence.Initialization;
 

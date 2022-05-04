@@ -1,12 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Infrastructure.Auth.AzureAd;
 using RewardsPlus.Infrastructure.Auth.Jwt;
 using RewardsPlus.Infrastructure.Auth.Permissions;
 using RewardsPlus.Infrastructure.Identity;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace RewardsPlus.Infrastructure.Auth;
 

@@ -1,8 +1,8 @@
-using System.Text;
-using RewardsPlus.Application.Common.Caching;
-using RewardsPlus.Application.Common.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Common.Caching;
+using RewardsPlus.Application.Common.Interfaces;
+using System.Text;
 
 namespace RewardsPlus.Infrastructure.Caching;
 

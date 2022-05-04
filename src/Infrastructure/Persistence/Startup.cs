@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Domain.Common.Contracts;
 using RewardsPlus.Infrastructure.Common;
@@ -5,10 +9,6 @@ using RewardsPlus.Infrastructure.Persistence.ConnectionString;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
 using RewardsPlus.Infrastructure.Persistence.Repository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Serilog;
 
 namespace RewardsPlus.Infrastructure.Persistence;

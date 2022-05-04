@@ -1,5 +1,5 @@
-﻿using RewardsPlus.Application.Common.Caching;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
+using RewardsPlus.Application.Common.Caching;
 
 namespace RewardsPlus.Infrastructure.Localization;
 

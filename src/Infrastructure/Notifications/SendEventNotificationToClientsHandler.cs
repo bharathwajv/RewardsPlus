@@ -1,7 +1,7 @@
-﻿using RewardsPlus.Application.Common.Events;
+﻿using MediatR;
+using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Shared.Notifications;
-using MediatR;
 
 namespace RewardsPlus.Infrastructure.Notifications;
 

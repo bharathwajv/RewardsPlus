@@ -1,6 +1,6 @@
-﻿using RewardsPlus.Application.Common.Caching;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Application.Common.Caching;
 
 namespace RewardsPlus.Infrastructure.Caching;
 

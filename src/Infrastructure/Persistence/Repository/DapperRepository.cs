@@ -1,10 +1,10 @@
-using System.Data;
 using Dapper;
 using Finbuckle.MultiTenant.EntityFrameworkCore;
 using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Domain.Common.Contracts;
 using RewardsPlus.Infrastructure.Persistence.Context;
+using System.Data;
 
 namespace RewardsPlus.Infrastructure.Persistence.Repository;
 

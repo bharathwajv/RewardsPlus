@@ -1,5 +1,5 @@
-using RewardsPlus.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
+using RewardsPlus.Application.Common.Interfaces;
 using Serilog;
 using Serilog.Context;
 

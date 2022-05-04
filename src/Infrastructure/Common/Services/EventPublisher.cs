@@ -1,7 +1,7 @@
-using RewardsPlus.Application.Common.Events;
-using RewardsPlus.Shared.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Common.Events;
+using RewardsPlus.Shared.Events;
 
 namespace RewardsPlus.Infrastructure.Common.Services;
 

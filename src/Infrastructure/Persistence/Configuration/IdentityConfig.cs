@@ -1,8 +1,8 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
-using RewardsPlus.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RewardsPlus.Infrastructure.Identity;
 
 namespace RewardsPlus.Infrastructure.Persistence.Configuration;
 

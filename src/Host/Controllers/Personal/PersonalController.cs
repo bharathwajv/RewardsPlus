@@ -1,7 +1,7 @@
-using System.Security.Claims;
 using RewardsPlus.Application.Auditing;
 using RewardsPlus.Application.Identity.Users;
 using RewardsPlus.Application.Identity.Users.Password;
+using System.Security.Claims;
 
 namespace RewardsPlus.Host.Controllers.Identity;
 

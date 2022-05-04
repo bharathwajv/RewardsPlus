@@ -1,5 +1,5 @@
-﻿using RewardsPlus.Application.Common.Persistence;
-using Infrastructure.Test.Multitenancy.Fixtures;
+﻿using Infrastructure.Test.Multitenancy.Fixtures;
+using RewardsPlus.Application.Common.Persistence;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Microsoft.DependencyInjection.Abstracts;

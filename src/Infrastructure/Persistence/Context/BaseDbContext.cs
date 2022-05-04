@@ -1,14 +1,14 @@
-using System.Data;
 using Finbuckle.MultiTenant;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Domain.Common.Contracts;
 using RewardsPlus.Infrastructure.Auditing;
 using RewardsPlus.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Options;
+using System.Data;
 
 namespace RewardsPlus.Infrastructure.Persistence.Context;
 

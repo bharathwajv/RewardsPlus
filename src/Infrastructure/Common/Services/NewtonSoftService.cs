@@ -1,7 +1,7 @@
-using RewardsPlus.Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using RewardsPlus.Application.Common.Interfaces;
 
 namespace RewardsPlus.Infrastructure.Common.Services;
 

@@ -1,7 +1,7 @@
-﻿using RewardsPlus.Application.Common.Events;
+﻿using Microsoft.AspNetCore.Identity;
+using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Identity.Users;
 using RewardsPlus.Domain.Identity;
-using Microsoft.AspNetCore.Identity;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

@@ -1,6 +1,6 @@
-using System.Text;
-using RewardsPlus.Application.Common.Mailing;
 using RazorEngineCore;
+using RewardsPlus.Application.Common.Mailing;
+using System.Text;
 
 namespace RewardsPlus.Infrastructure.Mailing;
 

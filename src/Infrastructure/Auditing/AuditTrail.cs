@@ -1,5 +1,5 @@
-using RewardsPlus.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using RewardsPlus.Application.Common.Interfaces;
 
 namespace RewardsPlus.Infrastructure.Auditing;
 

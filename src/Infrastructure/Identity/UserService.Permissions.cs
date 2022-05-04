@@ -1,7 +1,7 @@
-﻿using RewardsPlus.Application.Common.Caching;
+﻿using Microsoft.EntityFrameworkCore;
+using RewardsPlus.Application.Common.Caching;
 using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Shared.Authorization;
-using Microsoft.EntityFrameworkCore;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

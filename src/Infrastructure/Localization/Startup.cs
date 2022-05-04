@@ -1,10 +1,10 @@
-﻿using System.Globalization;
-using RewardsPlus.Infrastructure.Middleware;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using RewardsPlus.Infrastructure.Middleware;
+using System.Globalization;
 
 namespace RewardsPlus.Infrastructure.Localization;
 

@@ -1,16 +1,16 @@
-﻿using System.Security.Claims;
-using Finbuckle.MultiTenant;
-using RewardsPlus.Application.Common.Exceptions;
-using RewardsPlus.Application.Identity.Users;
-using RewardsPlus.Infrastructure.Multitenancy;
-using RewardsPlus.Shared.Authorization;
-using RewardsPlus.Shared.Multitenancy;
+﻿using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
+using RewardsPlus.Application.Common.Exceptions;
+using RewardsPlus.Application.Identity.Users;
+using RewardsPlus.Infrastructure.Multitenancy;
+using RewardsPlus.Shared.Authorization;
+using RewardsPlus.Shared.Multitenancy;
 using Serilog;
+using System.Security.Claims;
 
 namespace RewardsPlus.Infrastructure.Auth.AzureAd;
 

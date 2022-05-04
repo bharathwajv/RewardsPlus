@@ -1,10 +1,10 @@
 ﻿using Finbuckle.MultiTenant;
-using RewardsPlus.Infrastructure.Multitenancy;
-using RewardsPlus.Shared.Multitenancy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RewardsPlus.Infrastructure.Multitenancy;
+using RewardsPlus.Shared.Multitenancy;
 
 namespace RewardsPlus.Infrastructure.Persistence.Initialization;
 

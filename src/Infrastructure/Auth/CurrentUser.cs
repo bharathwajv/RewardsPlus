@@ -1,5 +1,5 @@
-using System.Security.Claims;
 using RewardsPlus.Application.Common.Interfaces;
+using System.Security.Claims;
 
 namespace RewardsPlus.Infrastructure.Auth;
 

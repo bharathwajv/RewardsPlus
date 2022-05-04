@@ -1,8 +1,8 @@
-﻿using RewardsPlus.Application.Common.Exceptions;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Mailing;
 using RewardsPlus.Application.Identity;
 using RewardsPlus.Application.Identity.Users.Password;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

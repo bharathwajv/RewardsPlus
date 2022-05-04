@@ -1,5 +1,5 @@
-﻿using RewardsPlus.Application.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Application.Common.Interfaces;
 
 namespace RewardsPlus.Infrastructure.Common;
 

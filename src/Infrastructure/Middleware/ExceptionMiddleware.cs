@@ -1,10 +1,10 @@
-using System.Net;
-using RewardsPlus.Application.Common.Exceptions;
-using RewardsPlus.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
+using RewardsPlus.Application.Common.Exceptions;
+using RewardsPlus.Application.Common.Interfaces;
 using Serilog;
 using Serilog.Context;
+using System.Net;
 
 namespace RewardsPlus.Infrastructure.Middleware;
 

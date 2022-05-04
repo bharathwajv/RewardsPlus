@@ -1,10 +1,10 @@
-using System.Data.SqlClient;
-using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Infrastructure.Common;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
+using RewardsPlus.Application.Common.Persistence;
+using RewardsPlus.Infrastructure.Common;
+using System.Data.SqlClient;
 
 namespace RewardsPlus.Infrastructure.Persistence.ConnectionString;
 

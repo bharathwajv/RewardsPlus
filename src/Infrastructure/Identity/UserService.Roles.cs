@@ -1,9 +1,9 @@
-﻿using RewardsPlus.Application.Common.Exceptions;
+﻿using Microsoft.EntityFrameworkCore;
+using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Identity.Users;
 using RewardsPlus.Domain.Identity;
 using RewardsPlus.Shared.Authorization;
 using RewardsPlus.Shared.Multitenancy;
-using Microsoft.EntityFrameworkCore;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

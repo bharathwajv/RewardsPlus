@@ -1,11 +1,11 @@
-﻿using System.Security.Claims;
-using Finbuckle.MultiTenant;
-using RewardsPlus.Infrastructure.Common;
-using RewardsPlus.Shared.Multitenancy;
+﻿using Finbuckle.MultiTenant;
 using Hangfire.Client;
 using Hangfire.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Infrastructure.Common;
+using RewardsPlus.Shared.Multitenancy;
+using System.Security.Claims;
 
 namespace RewardsPlus.Infrastructure.BackgroundJobs;
 

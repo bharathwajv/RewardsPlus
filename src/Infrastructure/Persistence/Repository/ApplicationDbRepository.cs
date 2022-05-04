@@ -1,9 +1,9 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
+using Mapster;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Domain.Common.Contracts;
 using RewardsPlus.Infrastructure.Persistence.Context;
-using Mapster;
 
 namespace RewardsPlus.Infrastructure.Persistence.Repository;
 

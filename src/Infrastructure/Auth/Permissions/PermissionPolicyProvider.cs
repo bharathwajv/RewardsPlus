@@ -1,6 +1,6 @@
-using RewardsPlus.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using RewardsPlus.Shared.Authorization;
 
 namespace RewardsPlus.Infrastructure.Auth.Permissions;
 

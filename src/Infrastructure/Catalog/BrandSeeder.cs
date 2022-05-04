@@ -1,9 +1,9 @@
-using System.Reflection;
+using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Domain.Catalog;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
-using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace RewardsPlus.Infrastructure.Catalog;
 

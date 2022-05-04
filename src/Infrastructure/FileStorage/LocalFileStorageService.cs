@@ -1,8 +1,8 @@
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using RewardsPlus.Application.Common.FileStorage;
 using RewardsPlus.Domain.Common;
 using RewardsPlus.Infrastructure.Common.Extensions;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace RewardsPlus.Infrastructure.FileStorage;
 

@@ -1,19 +1,18 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using RewardsPlus.Application.Common.Exceptions;
-using RewardsPlus.Application.Identity.Tokens;
-using RewardsPlus.Infrastructure.Auth;
-using RewardsPlus.Infrastructure.Auth.Jwt;
-using RewardsPlus.Infrastructure.Mailing;
-using RewardsPlus.Infrastructure.Multitenancy;
-using RewardsPlus.Shared.Authorization;
-using RewardsPlus.Shared.Multitenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using RewardsPlus.Application.Common.Exceptions;
+using RewardsPlus.Application.Identity.Tokens;
+using RewardsPlus.Infrastructure.Auth;
+using RewardsPlus.Infrastructure.Auth.Jwt;
+using RewardsPlus.Infrastructure.Multitenancy;
+using RewardsPlus.Shared.Authorization;
+using RewardsPlus.Shared.Multitenancy;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

@@ -1,13 +1,13 @@
-﻿using RewardsPlus.Application.Common.Exceptions;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web;
+using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Mailing;
 using RewardsPlus.Application.Identity;
 using RewardsPlus.Application.Identity.Users;
 using RewardsPlus.Domain.Common;
 using RewardsPlus.Domain.Identity;
 using RewardsPlus.Shared.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
 using System.Security.Claims;
 
 namespace RewardsPlus.Infrastructure.Identity;

@@ -1,9 +1,9 @@
-using RewardsPlus.Application.Common.Mailing;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using RewardsPlus.Application.Common.Mailing;
 
 namespace RewardsPlus.Infrastructure.Mailing;
 

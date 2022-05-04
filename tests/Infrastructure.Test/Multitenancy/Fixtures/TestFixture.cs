@@ -1,7 +1,7 @@
-﻿using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Infrastructure.Persistence.ConnectionString;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RewardsPlus.Application.Common.Persistence;
+using RewardsPlus.Infrastructure.Persistence.ConnectionString;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace Infrastructure.Test.Multitenancy.Fixtures;

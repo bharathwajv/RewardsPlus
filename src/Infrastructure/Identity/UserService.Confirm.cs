@@ -1,9 +1,9 @@
-using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using RewardsPlus.Application.Identity;
 using RewardsPlus.Infrastructure.Common;
 using RewardsPlus.Shared.Multitenancy;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace RewardsPlus.Infrastructure.Identity;
 

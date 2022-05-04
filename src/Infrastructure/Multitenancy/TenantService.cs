@@ -1,12 +1,12 @@
 ﻿using Finbuckle.MultiTenant;
+using Mapster;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Exceptions;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Application.Token;
 using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
-using Mapster;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 
@@ -51,7 +51,7 @@ internal class TenantService : ITenantService
 
     public async Task<string> CreateAsync(CreateTenantRequest request, CancellationToken cancellationToken)
     {
-        if(request.ConnectionString?.Trim() == _dbSettings.ConnectionString?.Trim()) request.ConnectionString = string.Empty;
+        if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString?.Trim()) request.ConnectionString = string.Empty;
 
         var tenant = new FSHTenantInfo(request.Id, request.Name, request.ConnectionString, request.AdminEmail, request.Issuer);
         await _tenantStore.TryAddAsync(tenant);

@@ -1,6 +1,6 @@
-using System.Security.Claims;
-using RewardsPlus.Application.Identity.Users;
 using Microsoft.AspNetCore.Authorization;
+using RewardsPlus.Application.Identity.Users;
+using System.Security.Claims;
 
 namespace RewardsPlus.Infrastructure.Auth.Permissions;
 
