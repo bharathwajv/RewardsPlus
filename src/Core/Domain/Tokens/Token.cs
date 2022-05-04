@@ -13,10 +13,9 @@ public class Token : AuditableEntity, IAggregateRoot
         UserEmail = userEmail;
     }
 
-    public Token Update(double balance, string userId)
+    public Token Update(double balance)
     {
         if (Balance != balance) Balance = balance;
-        if (UserId is not null && !UserId?.Equals(userId) is not true) UserId = userId;
         return this;
     }
 }

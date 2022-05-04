@@ -1,29 +1,32 @@
-﻿using RewardsPlus.Infrastructure.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Token;
+using RewardsPlus.Infrastructure.Identity;
 using RewardsPlus.Infrastructure.Multitenancy;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Shared.Authorization;
 using RewardsPlus.Shared.Multitenancy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace RewardsPlus.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder
 {
+    private readonly ICashierService _cashierService;  //todo - - can use?
     private readonly FSHTenantInfo _currentTenant;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly CustomSeederRunner _seederRunner;
     private readonly ILogger<ApplicationDbSeeder> _logger;
 
-    public ApplicationDbSeeder(FSHTenantInfo currentTenant, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, CustomSeederRunner seederRunner, ILogger<ApplicationDbSeeder> logger)
+    public ApplicationDbSeeder(FSHTenantInfo currentTenant, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, CustomSeederRunner seederRunner, ILogger<ApplicationDbSeeder> logger, ICashierService _cashierService)
     {
         _currentTenant = currentTenant;
         _roleManager = roleManager;
         _userManager = userManager;
         _seederRunner = seederRunner;
         _logger = logger;
+        this._cashierService = _cashierService;
     }
 
     public async Task SeedDatabaseAsync(ApplicationDbContext dbContext, CancellationToken cancellationToken)
@@ -119,5 +122,8 @@ internal class ApplicationDbSeeder
             _logger.LogInformation("Assigning Admin Role to Admin User for '{tenantId}' Tenant.", _currentTenant.Id);
             await _userManager.AddToRoleAsync(adminUser, FSHRoles.Admin);
         }
+
+        // buy some cash for admin - only for devlopment
+        await _cashierService.BuyAsync(new BuyTokensRequest() { Amount = 10000.00 }, CancellationToken.None);
     }
 }

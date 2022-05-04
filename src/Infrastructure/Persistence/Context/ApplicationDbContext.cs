@@ -19,9 +19,11 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Token> Tokens => Set<Token>(); // SchemaName defined in TokenConfig
 
-    //purchase coins
+    // purchase coins
 
-    //sales - purchase with coins 
+    // sales - purchase with coins
+
+    // send coupons or purchased items
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
