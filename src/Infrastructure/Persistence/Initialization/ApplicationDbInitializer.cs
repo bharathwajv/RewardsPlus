@@ -24,6 +24,7 @@ internal class ApplicationDbInitializer
     {
         if (_dbContext.Database.GetMigrations().Any())
         {
+            var tst = await _dbContext.Database.GetPendingMigrationsAsync(cancellationToken);
             if ((await _dbContext.Database.GetPendingMigrationsAsync(cancellationToken)).Any())
             {
                 _logger.LogInformation("Applying Migrations for '{tenantId}' tenant.", _currentTenant.Id);

@@ -12,8 +12,8 @@ using RewardsPlus.Infrastructure.Persistence.Context;
 namespace Migrators.MSSQL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220504195714_initial")]
-    partial class initial
+    [Migration("20220505182726_initialTodo")]
+    partial class initialTodo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
