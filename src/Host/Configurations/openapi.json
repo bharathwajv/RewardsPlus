@@ -3,12 +3,10 @@
     "Enable": true,
     "Title": ".NET 6.0 WebAPI - Clean Architecture",
     "Version": "v1",
-    "Description": "Clean Architecture Template for .NET 6.0 WebApi built with Multitenancy Support.",
-    "ContactName": "Mukesh Murugan",
-    "ContactEmail": "hello@codewithmukesh.com",
-    "ContactUrl": "https://linkedin.com/in/iammukeshm",
+    "Description": "Clean Architecture - .NET 6.0 WebApi built with Multitenancy Support.",
+    "ContactName": "Bharathwaj Vasudevan",
+    "ContactEmail": "bharathwaj.vasu@gmail.com",
     "License": true,
-    "LicenseName": "MIT License",
-    "LicenseUrl": "https://github.com/fullstackhero/dotnet-webapi-boilerplate/blob/main/LICENSE"
+    "LicenseName": "MIT License"
   }
 }
