@@ -82,7 +82,7 @@ internal class CashierService : ICashierService
 
         if (curentUserTokenInfo == null)
         {
-            _context.Tokens?.AddAsync(new Token(request.Amount, _currentUser.GetUserId().ToString(), _currentUser?.GetUserEmail()), cancellationToken);
+            _context.Tokens?.AddAsync(new Token(request.Amount, _currentUser.GetUserId().ToString(), _currentUser.GetUserEmail()), cancellationToken);
         }
         else
         {
@@ -134,5 +134,4 @@ internal class CashierService : ICashierService
 
         return string.Empty;
     }
-
 }

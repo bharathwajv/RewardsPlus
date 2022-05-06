@@ -12,7 +12,7 @@ namespace RewardsPlus.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder
 {
-    private readonly ICashierService _cashierService;  //todo - - can use?
+    private readonly ICashierService _cashierService;  //AskExperts - - can use?
     private readonly FSHTenantInfo _currentTenant;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -123,7 +123,7 @@ internal class ApplicationDbSeeder
             await _userManager.AddToRoleAsync(adminUser, FSHRoles.Admin);
         }
 
-        // buy some cash for admin - only for devlopment - OFD
+        // buy some cash for admin - only for devlopment
         await _cashierService.SeedAsync(adminUser.Email, adminUser.Id, 10000.00);
     }
 }
