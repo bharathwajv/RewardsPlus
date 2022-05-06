@@ -1,0 +1,17 @@
+Multi tenent Use Case:
+
+1,Need : Employee rewards hub 
+2,Employee should be able to claim diffrent kinds of rewards(eg:Amazon gift card) 
+  based on available reward tockens
+3,Reward tockens can be provided to users by leadership
+  of the respective user
+4,Tockens can be purchased by admins and allocated to the leaders based on project 
+
+ToDo:
+1,Admin for a tenent to manage roles of users and leadership
+2,Super admin for managing all tenents
+3,Cart and points dristribution
+4,Team mode(equal dristibution) etc..
+
+pirpep@starmaker.email
+pirpep@1

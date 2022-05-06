@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Application.Token;
 using RewardsPlus.Domain.Catalog;
@@ -12,7 +13,8 @@ internal class CashierService : ICashierService
 {
     private readonly ApplicationDbContext _context;
     private readonly ICurrentUser _currentUser;
-    public CashierService(ICurrentUser currentUser, ApplicationDbContext context) => (_currentUser, _context) = (currentUser, context);
+    private readonly ILogger<CashierService> _logger;
+    public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger) => (_currentUser, _context, _logger) = (currentUser, context, logger);
 
     public async Task<List<TokenDto>> GetAllAsync()
     {
@@ -127,7 +129,9 @@ internal class CashierService : ICashierService
         {
             _context.Tokens?.AddAsync(new Token(amountToSeed, seedUserId, seedUserEmail));
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Seeding Cash {amountToSeed} to user '{seedUserEmail}'.", amountToSeed, seedUserEmail);
         }
+
         return string.Empty;
     }
 
