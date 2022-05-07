@@ -2,10 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Common.Interfaces;
+using RewardsPlus.Application.Payment; //AskExperts
 using RewardsPlus.Application.Token;
 using RewardsPlus.Domain.Catalog;
 using RewardsPlus.Infrastructure.Identity;
 using RewardsPlus.Infrastructure.Persistence.Context;
+using static RewardsPlus.Infrastructure.Common.Resolver.Resolvers;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 
@@ -14,7 +16,8 @@ internal class CashierService : ICashierService
     private readonly ApplicationDbContext _context;
     private readonly ICurrentUser _currentUser;
     private readonly ILogger<CashierService> _logger;
-    public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger) => (_currentUser, _context, _logger) = (currentUser, context, logger);
+    private readonly PaymentGatewayResolver _paymentGatewayResolver;
+    public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger, PaymentGatewayResolver paymentGatewayResolver) => (_currentUser, _context, _logger, _paymentGatewayResolver) = (currentUser, context, logger, paymentGatewayResolver);
 
     public async Task<List<CashDto>> GetAllAsync()
     {
@@ -79,6 +82,21 @@ internal class CashierService : ICashierService
     //buy tokens
     public async Task<string> BuyAsync(BuyCashRequest request, CancellationToken cancellationToken)
     {
+        var paymentGateway = this._paymentGatewayResolver(request.Mode);
+        bool isSuccess = await paymentGateway?.Sale(new PayRequest(_currentUser?.GetUserEmail(), request.Amount));
+        if (isSuccess)
+        {
+            double newBalance = await ProceedTransaction(request, cancellationToken);
+            return newBalance.ToString();
+        }
+        else
+        {
+            throw new InvalidDataException("Invalid user data");
+        }
+    }
+
+    private async Task<double> ProceedTransaction(BuyCashRequest request, CancellationToken cancellationToken)
+    {
         var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
         double newBalance;
         if (curentUserTokenInfo == null)
@@ -93,8 +111,7 @@ internal class CashierService : ICashierService
         }
 
         await _context.SaveChangesAsync(cancellationToken);
-
-        return newBalance.ToString();
+        return newBalance;
     }
 
     //redeem tokens
@@ -145,4 +162,5 @@ internal class CashierService : ICashierService
         var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
         return curentUserTokenInfo?.Balance ?? 0;
     }
+
 }

@@ -2,6 +2,7 @@ namespace RewardsPlus.Application.Token;
 
 public class BuyCashRequest : IRequest<string>
 {
+    public BuyMode Mode { get; set; }
     public double Amount { get; set; }
 }
 
