@@ -16,38 +16,38 @@ internal class CashierService : ICashierService
     private readonly ILogger<CashierService> _logger;
     public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger) => (_currentUser, _context, _logger) = (currentUser, context, logger);
 
-    public async Task<List<TokenDto>> GetAllAsync()
+    public async Task<List<CashDto>> GetAllAsync()
     {
-        var tokens = await _context.Tokens
+        var tokens = await _context.Cash
            .OrderByDescending(a => a.UserEmail)
            .Take(250)
            .ToListAsync();
 
-        return tokens.Adapt<List<TokenDto>>();
+        return tokens.Adapt<List<CashDto>>();
     }
 
     public async Task<bool> ExistsWithIdAsync(string id) =>
-       await _context.Tokens.AnyAsync(x => x.UserId == id);
+       await _context.Cash.AnyAsync(x => x.UserId == id);
 
-    public async Task<TokenDto> GetByIdAsync(string id)
+    public async Task<CashDto> GetByIdAsync(string id)
     {
-        var tokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserId == id);
-        return tokenInfo?.Adapt<TokenDto>();
+        var tokenInfo = _context.Cash?.ToList()?.Find(x => x.UserId == id);
+        return tokenInfo?.Adapt<CashDto>();
     }
 
-    public async Task<string> GiftAsync(GiftTokensRequest request, CancellationToken cancellationToken)
+    public async Task<string> GiftAsync(GiftCashRequest request, CancellationToken cancellationToken)
     {
         var toUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.ToEmailId, cancellationToken: cancellationToken);
 
-        var curentUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
 
         ValidateBeforeGifting(request, toUser, curentUserTokenInfo);
 
-        var toUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == toUser?.Email);
+        var toUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == toUser?.Email);
 
         if (toUserTokenInfo == null)
         {
-            _context.Tokens?.AddAsync(new Token(request.Amount, toUser.Id, toUser.Email), cancellationToken);
+            _context.Cash?.AddAsync(new Cash(request.Amount, toUser.Id, toUser.Email), cancellationToken);
         }
         else
         {
@@ -57,13 +57,14 @@ internal class CashierService : ICashierService
         await _context.SaveChangesAsync(cancellationToken);
 
         //if success deduct
-        curentUserTokenInfo?.Update(curentUserTokenInfo.Balance - request.Amount);
+        double newBalance = curentUserTokenInfo.Balance - request.Amount;
+        curentUserTokenInfo?.Update(newBalance);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return string.Empty;
+        return newBalance.ToString();
     }
 
-    private static void ValidateBeforeGifting(GiftTokensRequest request, ApplicationUser? toUser, Token? curentUserTokenInfo)
+    private static void ValidateBeforeGifting(GiftCashRequest request, ApplicationUser? toUser, Cash? curentUserTokenInfo)
     {
         if (toUser == null)
             throw new Exception("User not found");
@@ -76,27 +77,30 @@ internal class CashierService : ICashierService
     }
 
     //buy tokens
-    public async Task<string> BuyAsync(BuyTokensRequest request, CancellationToken cancellationToken)
+    public async Task<string> BuyAsync(BuyCashRequest request, CancellationToken cancellationToken)
     {
-        var curentUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
-
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
+        double newBalance;
         if (curentUserTokenInfo == null)
         {
-            _context.Tokens?.AddAsync(new Token(request.Amount, _currentUser.GetUserId().ToString(), _currentUser.GetUserEmail()), cancellationToken);
+            newBalance = request.Amount;
+            _context.Cash?.AddAsync(new Cash(newBalance, _currentUser.GetUserId().ToString(), _currentUser?.GetUserEmail()), cancellationToken);
         }
         else
         {
-            curentUserTokenInfo.Update(curentUserTokenInfo.Balance + request.Amount);
+            newBalance = curentUserTokenInfo.Balance + request.Amount;
+            curentUserTokenInfo.Update(newBalance);
         }
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return string.Empty;
+        return newBalance.ToString();
     }
+
     //redeem tokens
-    public async Task<string> RedeemAsync(RedeemTokensRequest request, CancellationToken cancellationToken)
+    public async Task<string> RedeemAsync(RedeemCashRequest request, CancellationToken cancellationToken)
     {
-        var curentUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
 
         ValidateBeforeRedeem(request, curentUserTokenInfo);
 
@@ -107,7 +111,7 @@ internal class CashierService : ICashierService
         return string.Empty;
     }
 
-    private static void ValidateBeforeRedeem(RedeemTokensRequest request, Token? curentUserTokenInfo)
+    private static void ValidateBeforeRedeem(RedeemCashRequest request, Cash? curentUserTokenInfo)
     {
         if (curentUserTokenInfo == null)
         {
@@ -123,15 +127,22 @@ internal class CashierService : ICashierService
     //seed for devlopment
     public async Task<string> SeedAsync(string seedUserEmail, string seedUserId, double amountToSeed)
     {
-        var curentUserTokenInfo = _context.Tokens?.ToList()?.Find(x => x.UserEmail == seedUserEmail);
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == seedUserEmail);
 
         if (curentUserTokenInfo == null)
         {
-            _context.Tokens?.AddAsync(new Token(amountToSeed, seedUserId, seedUserEmail));
+            _context.Cash?.AddAsync(new Cash(amountToSeed, seedUserId, seedUserEmail));
             await _context.SaveChangesAsync();
             _logger.LogInformation("Seeding Cash {amountToSeed} to user '{seedUserEmail}'.", amountToSeed, seedUserEmail);
         }
 
         return string.Empty;
+    }
+
+    //get balance
+    public async Task<double> GetBalanceAsync()
+    {
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
+        return curentUserTokenInfo?.Balance ?? 0;
     }
 }

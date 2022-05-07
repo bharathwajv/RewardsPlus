@@ -79,8 +79,6 @@ internal partial class UserService
             user = new ApplicationUser
             {
                 ObjectId = principal.GetObjectId(),
-                FirstName = principal.FindFirstValue(ClaimTypes.GivenName),
-                LastName = principal.FindFirstValue(ClaimTypes.Surname),
                 Email = email,
                 NormalizedEmail = email.ToUpperInvariant(),
                 UserName = username,
@@ -107,8 +105,6 @@ internal partial class UserService
         var user = new ApplicationUser
         {
             Email = request.Email,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
             UserName = request.UserName,
             PhoneNumber = request.PhoneNumber,
             IsActive = true
@@ -126,25 +122,29 @@ internal partial class UserService
 
         if (_securitySettings.RequireConfirmedAccount && !string.IsNullOrEmpty(user.Email))
         {
-            // send verification email
-            string emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
-            RegisterUserEmailModel eMailModel = new RegisterUserEmailModel()
-            {
-                Email = user.Email,
-                UserName = user.UserName,
-                Url = emailVerificationUri
-            };
-            var mailRequest = new MailRequest(
-                new List<string> { user.Email },
-                _localizer["Confirm Registration"],
-                _templateService.GenerateEmailTemplate("email-confirmation", eMailModel));
-            _jobService.Enqueue(() => _mailService.SendAsync(mailRequest));
-            messages.Add(_localizer[$"Please check {user.Email} to verify your account!"]);
+            await SendVerificationMail(origin, user, messages);
         }
 
         await _events.PublishAsync(new ApplicationUserCreatedEvent(user.Id));
 
         return string.Join(Environment.NewLine, messages);
+    }
+
+    private async Task SendVerificationMail(string origin, ApplicationUser user, List<string> messages)
+    {
+        string emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
+        RegisterUserEmailModel eMailModel = new RegisterUserEmailModel()
+        {
+            Email = user.Email,
+            UserName = user.UserName,
+            Url = emailVerificationUri
+        };
+        var mailRequest = new MailRequest(
+            new List<string> { user.Email },
+            _localizer["Confirm Registration"],
+            _templateService.GenerateEmailTemplate("email-confirmation", eMailModel));
+        _jobService.Enqueue(() => _mailService.SendAsync(mailRequest));
+        messages.Add(_localizer[$"Please check {user.Email} to verify your account!"]);
     }
 
     public async Task UpdateAsync(UpdateUserRequest request, string userId)
@@ -164,8 +164,7 @@ internal partial class UserService
             }
         }
 
-        user.FirstName = request.FirstName;
-        user.LastName = request.LastName;
+        user.UserName = request.UserName;
         user.PhoneNumber = request.PhoneNumber;
         string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
         if (request.PhoneNumber != phoneNumber)

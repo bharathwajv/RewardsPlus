@@ -7,11 +7,7 @@ public class UpdateUserRequestValidator : CustomValidator<UpdateUserRequest>
         RuleFor(p => p.Id)
             .NotEmpty();
 
-        RuleFor(p => p.FirstName)
-            .NotEmpty()
-            .MaximumLength(75);
-
-        RuleFor(p => p.LastName)
+        RuleFor(p => p.UserName)
             .NotEmpty()
             .MaximumLength(75);
 

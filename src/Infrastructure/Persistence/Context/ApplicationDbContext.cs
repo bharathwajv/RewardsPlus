@@ -17,7 +17,7 @@ public class ApplicationDbContext : BaseDbContext
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
-    public DbSet<Token> Tokens => Set<Token>(); // SchemaName defined in TokenConfig
+    public DbSet<Cash> Cash => Set<Cash>(); // SchemaName defined in TokenConfig
 
     // purchase coins
 

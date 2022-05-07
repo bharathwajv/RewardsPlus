@@ -13,7 +13,7 @@ public class CreateUserRequestValidator : CustomValidator<CreateUserRequest>
 
         RuleFor(u => u.UserName).Cascade(CascadeMode.Stop)
             .NotEmpty()
-            .MinimumLength(6)
+            .MinimumLength(5)
             .MustAsync(async (name, _) => !await userService.ExistsWithNameAsync(name))
                 .WithMessage((_, name) => string.Format(localizer["Username {0} is already taken."], name));
 
@@ -21,12 +21,6 @@ public class CreateUserRequestValidator : CustomValidator<CreateUserRequest>
             .MustAsync(async (phone, _) => !await userService.ExistsWithPhoneNumberAsync(phone!))
                 .WithMessage((_, phone) => string.Format(localizer["Phone number {0} is already registered."], phone))
                 .Unless(u => string.IsNullOrWhiteSpace(u.PhoneNumber));
-
-        RuleFor(p => p.FirstName).Cascade(CascadeMode.Stop)
-            .NotEmpty();
-
-        RuleFor(p => p.LastName).Cascade(CascadeMode.Stop)
-            .NotEmpty();
 
         RuleFor(p => p.Password).Cascade(CascadeMode.Stop)
             .NotEmpty()

@@ -5,10 +5,10 @@ using RewardsPlus.Domain.Catalog; // AskExperts - move to infrastructure and not
 
 namespace RewardsPlus.Infrastructure.Persistence.Configuration;
 
-public class TokenConfig : IEntityTypeConfiguration<Token>
+public class CashConfig : IEntityTypeConfiguration<Cash>
 {
-    public void Configure(EntityTypeBuilder<Token> builder) =>
+    public void Configure(EntityTypeBuilder<Cash> builder) =>
         builder
-            .ToTable("Tokens", SchemaNames.Application)
+            .ToTable("Cash", SchemaNames.Application)
             .IsMultiTenant();
 }

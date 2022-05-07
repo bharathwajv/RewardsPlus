@@ -1,6 +1,6 @@
 namespace RewardsPlus.Application.Token;
 
-public class TokenDto : IDto
+public class CashDto : IDto
 {
     public double Balance { get; set; }
     public string? UserId { get; set; }

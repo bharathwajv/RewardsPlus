@@ -13,7 +13,8 @@ public static class FSHAction
     public const string Generate = nameof(Generate);
     public const string Clean = nameof(Clean);
     public const string UpgradeSubscription = nameof(UpgradeSubscription);
-    public const string GiftToken = nameof(GiftToken);
+    public const string GiftCash = nameof(GiftCash);
+    public const string BuyCash = nameof(BuyCash);
 }
 
 public static class FSHResource
@@ -27,7 +28,7 @@ public static class FSHResource
     public const string RoleClaims = nameof(RoleClaims);
     public const string Products = nameof(Products);
     public const string Brands = nameof(Brands);
-    public const string Tokens = nameof(Tokens);
+    public const string Cashier = nameof(Cashier);
 }
 
 public static class FSHPermissions
@@ -36,7 +37,7 @@ public static class FSHPermissions
     {
         new("View Dashboard", FSHAction.View, FSHResource.Dashboard),
         new("View Hangfire", FSHAction.View, FSHResource.Hangfire),
-        new("View Users", FSHAction.View, FSHResource.Users),
+        new("View Users", FSHAction.View, FSHResource.Users,  IsBasic: true), // to search user and gift
         new("Search Users", FSHAction.Search, FSHResource.Users),
         new("Create Users", FSHAction.Create, FSHResource.Users),
         new("Update Users", FSHAction.Update, FSHResource.Users),
@@ -67,8 +68,9 @@ public static class FSHPermissions
         new("Create Tenants", FSHAction.Create, FSHResource.Tenants, IsRoot: true),
         new("Update Tenants", FSHAction.Update, FSHResource.Tenants, IsRoot: true),
         new("Upgrade Tenant Subscription", FSHAction.UpgradeSubscription, FSHResource.Tenants, IsRoot: true),
-        new("View Tokens", FSHAction.View, FSHResource.Tokens),
-        new("GiftToken to other users", FSHAction.GiftToken, FSHResource.Tokens, IsBasic: true), // basic users too can gift tokens to other users
+        new("View Tokens", FSHAction.View, FSHResource.Cashier),
+        new("GiftToken to other users", FSHAction.GiftCash, FSHResource.Cashier, IsBasic: true), // basic users too can gift tokens to other users
+        new("Buy Tokens", FSHAction.BuyCash, FSHResource.Cashier, IsBasic: true), // basic users too can buy tokens
     };
 
     public static IReadOnlyList<FSHPermission> All { get; } = new ReadOnlyCollection<FSHPermission>(_all);
