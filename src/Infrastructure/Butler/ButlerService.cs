@@ -28,7 +28,7 @@ internal class ButlerService : IButlerService
         }
         //return await _mediator.Send(new BuyProductCommand(request.ProductName, request.Quantity), cancellationToken);
 
-        return "Order placed successfully";
+        return "Order placed successfully"; 
     }
 }
 //public class SelectedProductSpec : Specification<Product>
