@@ -8,6 +8,7 @@ public class Product : AuditableEntity, IAggregateRoot
     public string? ImagePath { get; private set; }
     public Guid BrandId { get; private set; }
     public virtual Brand Brand { get; private set; } = default!;
+    public long Quantity { get; private set; }
 
     public Product(string name, string? description, decimal rate, Guid brandId, string? imagePath)
     {

@@ -56,9 +56,7 @@ internal class CashierService : ICashierService
         {
             toUserTokenInfo.Update(toUserTokenInfo.Balance + request.Amount);
         }
-
-        await _context.SaveChangesAsync(cancellationToken);
-
+        
         //if success deduct
         double newBalance = curentUserTokenInfo.Balance - request.Amount;
         curentUserTokenInfo?.Update(newBalance);

@@ -15,6 +15,7 @@ public static class FSHAction
     public const string UpgradeSubscription = nameof(UpgradeSubscription);
     public const string GiftCash = nameof(GiftCash);
     public const string BuyCash = nameof(BuyCash);
+    public const string UseService = nameof(UseService);
 }
 
 public static class FSHResource
@@ -29,6 +30,7 @@ public static class FSHResource
     public const string Products = nameof(Products);
     public const string Brands = nameof(Brands);
     public const string Cashier = nameof(Cashier);
+    public const string Butler = nameof(Butler);
 }
 
 public static class FSHPermissions
@@ -38,7 +40,7 @@ public static class FSHPermissions
         new("View Dashboard", FSHAction.View, FSHResource.Dashboard),
         new("View Hangfire", FSHAction.View, FSHResource.Hangfire),
         new("View Users", FSHAction.View, FSHResource.Users,  IsBasic: true), // to search user and gift
-        new("Search Users", FSHAction.Search, FSHResource.Users),
+        new("Search Users", FSHAction.Search, FSHResource.Users,IsBasic: true),
         new("Create Users", FSHAction.Create, FSHResource.Users),
         new("Update Users", FSHAction.Update, FSHResource.Users),
         new("Delete Users", FSHAction.Delete, FSHResource.Users),
@@ -71,11 +73,12 @@ public static class FSHPermissions
         new("View Tokens", FSHAction.View, FSHResource.Cashier),
         new("GiftToken to other users", FSHAction.GiftCash, FSHResource.Cashier, IsBasic: true), // basic users too can gift tokens to other users
         new("Buy Tokens", FSHAction.BuyCash, FSHResource.Cashier, IsBasic: true), // basic users too can buy tokens
+        new("User Butler service", FSHAction.UseService, FSHResource.Butler, IsBasic: true)
     };
 
     public static IReadOnlyList<FSHPermission> All { get; } = new ReadOnlyCollection<FSHPermission>(_all);
     public static IReadOnlyList<FSHPermission> Root { get; } = new ReadOnlyCollection<FSHPermission>(_all.Where(p => p.IsRoot).ToArray());
-    public static IReadOnlyList<FSHPermission> Admin { get; } = new ReadOnlyCollection<FSHPermission>(_all.Where(p => !p.IsRoot).ToArray());
+    public static IReadOnlyList<FSHPermission> Adm  in { get; } = new ReadOnlyCollection<FSHPermission>(_all.Where(p => !p.IsRoot).ToArray());
     public static IReadOnlyList<FSHPermission> Basic { get; } = new ReadOnlyCollection<FSHPermission>(_all.Where(p => p.IsBasic).ToArray());
 }
 

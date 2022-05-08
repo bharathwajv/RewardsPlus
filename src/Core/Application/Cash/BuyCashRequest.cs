@@ -10,7 +10,7 @@ public class BuyCashRequestHandler : IRequestHandler<BuyCashRequest, string>
 {
     private readonly ICashierService _cashierService;
 
-    public BuyCashRequestHandler(ICashierService tokenService) => _cashierService = tokenService;
+    public BuyCashRequestHandler(ICashierService cashierService) => _cashierService = cashierService;
 
     public Task<string> Handle(BuyCashRequest request, CancellationToken cancellationToken) =>
         _cashierService.BuyAsync(request, cancellationToken);

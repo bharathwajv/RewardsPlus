@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Migrators.MSSQL.Migrations
 {
-    public partial class initialTodo : Migration
+    public partial class initialTodo2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,10 +16,10 @@ namespace Migrators.MSSQL.Migrations
                 name: "Catalog");
 
             migrationBuilder.EnsureSchema(
-                name: "Identity");
+                name: "Application");
 
             migrationBuilder.EnsureSchema(
-                name: "Application");
+                name: "Identity");
 
             migrationBuilder.CreateTable(
                 name: "AuditTrails",
@@ -64,24 +64,7 @@ namespace Migrators.MSSQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                schema: "Identity",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tokens",
+                name: "Cash",
                 schema: "Application",
                 columns: table => new
                 {
@@ -99,7 +82,24 @@ namespace Migrators.MSSQL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tokens", x => x.Id);
+                    table.PrimaryKey("PK_Cash", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -357,16 +357,16 @@ namespace Migrators.MSSQL.Migrations
                 schema: "Auditing");
 
             migrationBuilder.DropTable(
+                name: "Cash",
+                schema: "Application");
+
+            migrationBuilder.DropTable(
                 name: "Products",
                 schema: "Catalog");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "Identity");
-
-            migrationBuilder.DropTable(
-                name: "Tokens",
-                schema: "Application");
 
             migrationBuilder.DropTable(
                 name: "UserClaims",

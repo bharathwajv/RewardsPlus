@@ -122,6 +122,6 @@ internal class ApplicationDbSeeder
         }
 
         // buy some cash for admin - only for devlopment
-        await _cashierService.SeedAsync(adminUser.Email, adminUser.Id, 10000.00);
+        await _cashierService.SeedAsync(adminUser.Email, adminUser.Id, 10000.00);  // resets to 10000.00 each run
     }
 }
