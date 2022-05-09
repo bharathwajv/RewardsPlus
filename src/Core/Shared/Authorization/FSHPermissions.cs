@@ -30,7 +30,7 @@ public static class FSHResource
     public const string Products = nameof(Products);
     public const string Brands = nameof(Brands);
     public const string Cashier = nameof(Cashier);
-    public const string Butler = nameof(Butler);
+    public const string Order = nameof(Order);
 }
 
 public static class FSHPermissions
@@ -73,7 +73,7 @@ public static class FSHPermissions
         new("View Tokens", FSHAction.View, FSHResource.Cashier),
         new("GiftToken to other users", FSHAction.GiftCash, FSHResource.Cashier, IsBasic: true), // basic users too can gift tokens to other users
         new("Buy Tokens", FSHAction.BuyCash, FSHResource.Cashier, IsBasic: true), // basic users too can buy tokens
-        new("User Butler service", FSHAction.UseService, FSHResource.Butler, IsBasic: true)
+        new("User Butler service", FSHAction.UseService, FSHResource.Order, IsBasic: true)
     };
 
     public static IReadOnlyList<FSHPermission> All { get; } = new ReadOnlyCollection<FSHPermission>(_all);

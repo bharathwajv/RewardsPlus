@@ -1,4 +1,4 @@
-﻿namespace RewardsPlus.Application.Token;
+﻿namespace RewardsPlus.Application.Cash;
 
 public class GetAllCashRequest : IRequest<List<CashDto>>
 {

@@ -1,4 +1,6 @@
-namespace RewardsPlus.Application.Token;
+using RewardsPlus.Domain.Cash;
+
+namespace RewardsPlus.Application.Cash;
 
 public class BuyCashRequest : IRequest<string>
 {

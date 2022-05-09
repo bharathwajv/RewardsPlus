@@ -1,4 +1,4 @@
-namespace RewardsPlus.Application.Token;
+namespace RewardsPlus.Application.Order;
 
 public class BuyProductRequest : IRequest<string>
 {

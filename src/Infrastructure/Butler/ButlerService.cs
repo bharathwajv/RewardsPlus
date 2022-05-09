@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Application.Common.Persistence;
-using RewardsPlus.Application.Token;
+using RewardsPlus.Application.Order;
 using RewardsPlus.Domain.Catalog;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;

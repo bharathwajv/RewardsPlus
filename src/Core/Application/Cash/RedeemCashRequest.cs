@@ -1,4 +1,4 @@
-namespace RewardsPlus.Application.Token;
+namespace RewardsPlus.Application.Cash;
 
 // will be used from  buy Items service
 public class RedeemCashRequest : IRequest<string>

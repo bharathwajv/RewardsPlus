@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using RewardsPlus.Application.Token;
+using RewardsPlus.Application.Cash;
 using RewardsPlus.Infrastructure.Identity;
 using RewardsPlus.Infrastructure.Multitenancy;
 using RewardsPlus.Infrastructure.Persistence.Context;

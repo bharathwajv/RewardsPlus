@@ -1,6 +1,6 @@
-﻿namespace RewardsPlus.Application.Token;
+﻿namespace RewardsPlus.Application.Order;
 
-public interface IButlerService
+public interface IButlerService : ITransientService
 {
     Task<string> PlaceOrder(BuyProductRequest productId, CancellationToken cancellationToken);
 }

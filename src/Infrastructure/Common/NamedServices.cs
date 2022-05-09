@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RewardsPlus.Domain.Catalog; //AskExperts
+using RewardsPlus.Domain.Cash;//AskExperts
 using RewardsPlus.Infrastructure.Multitenancy;
 using static RewardsPlus.Infrastructure.Common.Resolver.Resolvers;
 

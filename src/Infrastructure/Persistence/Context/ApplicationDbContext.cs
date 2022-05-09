@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Interfaces;
+using RewardsPlus.Domain.Cash;
 using RewardsPlus.Domain.Catalog;
+using RewardsPlus.Domain.Order;
 using RewardsPlus.Infrastructure.Persistence.Configuration;
 
 namespace RewardsPlus.Infrastructure.Persistence.Context;
@@ -18,12 +20,9 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Cash> Cash => Set<Cash>(); // SchemaName defined in TokenConfig
+    public DbSet<Order> Order => Set<Order>();
 
-    // purchase coins
-
-    // sales - purchase with coins
-
-    // send coupons or purchased items
+    // sales delivery
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

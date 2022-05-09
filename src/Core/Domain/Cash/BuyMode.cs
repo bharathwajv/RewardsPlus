@@ -1,4 +1,4 @@
-﻿namespace RewardsPlus.Domain.Catalog;
+﻿namespace RewardsPlus.Domain.Cash;
 
 public enum BuyMode
 {
