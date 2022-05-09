@@ -2,7 +2,7 @@ namespace RewardsPlus.Application.Order;
 
 public class BuyProductRequest : IRequest<string>
 {
-    public string ProductName { get; set; }
+    public Guid ProductName { get; set; }
 }
 
 public class BuyProductRequestHandler : IRequestHandler<BuyProductRequest, string>

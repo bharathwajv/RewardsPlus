@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Migrators.MSSQL.Migrations.TenantDb
 {
-    public partial class initialTodo : Migration
+    public partial class initialTodo1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

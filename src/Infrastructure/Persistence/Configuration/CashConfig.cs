@@ -9,6 +9,6 @@ public class CashConfig : IEntityTypeConfiguration<Cash>
 {
     public void Configure(EntityTypeBuilder<Cash> builder) =>
         builder
-            .ToTable("Cash", SchemaNames.Application)
+            .ToTable(TableNames.Cash, SchemaNames.Application)
             .IsMultiTenant();
 }

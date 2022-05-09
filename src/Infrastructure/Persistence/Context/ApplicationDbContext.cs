@@ -6,7 +6,6 @@ using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Domain.Cash;
 using RewardsPlus.Domain.Catalog;
 using RewardsPlus.Domain.Order;
-using RewardsPlus.Infrastructure.Persistence.Configuration;
 
 namespace RewardsPlus.Infrastructure.Persistence.Context;
 
@@ -23,11 +22,4 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Order> Order => Set<Order>();
 
     // sales delivery
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.HasDefaultSchema(SchemaNames.Catalog);
-    }
 }

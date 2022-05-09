@@ -18,14 +18,14 @@ internal class ButlerService : IButlerService
     public async Task<string> PlaceOrder(BuyProductRequest request, CancellationToken cancellationToken)
     {
         _currentUser.GetUserEmail();
-        Product product = await _repository.GetByIdAsync<string>((request?.ProductName), cancellationToken);
+        Product product = await _repository.GetByIdAsync(request.ProductName, cancellationToken);
         if (product == null)
             throw new Exception("Product not found");
 
-        if (product.Quantity > 0)
-        {
-            //product.Update(quantity)
-        }
+        //if (product.Quantity > 0)
+        //{
+        //    //product.Update(quantity)
+        //}
         //return await _mediator.Send(new BuyProductCommand(request.ProductName, request.Quantity), cancellationToken);
 
         return "Order placed successfully";

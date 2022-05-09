@@ -12,8 +12,8 @@ using RewardsPlus.Infrastructure.Multitenancy;
 namespace Migrators.MSSQL.Migrations.TenantDb
 {
     [DbContext(typeof(TenantDbContext))]
-    [Migration("20220507142359_initialTodo")]
-    partial class initialTodo
+    [Migration("20220509192631_initialTodo1")]
+    partial class initialTodo1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

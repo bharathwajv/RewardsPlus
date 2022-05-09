@@ -15,6 +15,6 @@ public class TenantDbContext : EFCoreStoreDbContext<FSHTenantInfo>
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<FSHTenantInfo>().ToTable("Tenants", SchemaNames.MultiTenancy);
+        modelBuilder.Entity<FSHTenantInfo>().ToTable(TableNames.Tenants, SchemaNames.MultiTenancy);
     }
 }
