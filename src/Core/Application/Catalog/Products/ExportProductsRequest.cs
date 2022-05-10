@@ -5,8 +5,8 @@ namespace RewardsPlus.Application.Catalog.Products;
 public class ExportProductsRequest : BaseFilter, IRequest<Stream>
 {
     public Guid? BrandId { get; set; }
-    public decimal? MinimumRate { get; set; }
-    public decimal? MaximumRate { get; set; }
+    public double? MinimumRate { get; set; }
+    public double? MaximumRate { get; set; }
 }
 
 public class ExportProductsRequestHandler : IRequestHandler<ExportProductsRequest, Stream>

@@ -12,6 +12,17 @@ public class OrderController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("search")]
+    [MustHavePermission(FSHAction.Search, FSHResource.Order)]
+    [OpenApiOperation("Search orders using available filters.", "")]
+    public Task<PaginationResponse<OrderDto>> SearchAsync(SearchOrdersRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
+    //order by id specification
+
+
     //deliver
     //Hangfire job 
 }

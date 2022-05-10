@@ -4,9 +4,7 @@ using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Cash;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Application.Payment; //AskExperts
-using RewardsPlus.Application.Token;
-using RewardsPlus.Domain.Cash;
-using RewardsPlus.Domain.Catalog;
+using RewardsPlus.Domain.CashDomain;
 using RewardsPlus.Infrastructure.Identity;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using static RewardsPlus.Infrastructure.Common.Resolver.Resolvers;
@@ -58,7 +56,7 @@ internal class CashierService : ICashierService
         {
             toUserTokenInfo.Update(toUserTokenInfo.Balance + request.Amount);
         }
-        
+
         //if success deduct
         double newBalance = curentUserTokenInfo.Balance - request.Amount;
         curentUserTokenInfo?.Update(newBalance);

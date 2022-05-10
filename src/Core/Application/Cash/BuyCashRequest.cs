@@ -1,4 +1,4 @@
-using RewardsPlus.Domain.Cash;
+using RewardsPlus.Domain.CashDomain;
 
 namespace RewardsPlus.Application.Cash;
 

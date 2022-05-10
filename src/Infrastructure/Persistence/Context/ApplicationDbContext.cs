@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RewardsPlus.Application.Common.Events;
 using RewardsPlus.Application.Common.Interfaces;
-using RewardsPlus.Domain.Cash;
+using RewardsPlus.Domain.CashDomain;
 using RewardsPlus.Domain.Catalog;
-using RewardsPlus.Domain.Order;
+using RewardsPlus.Domain.OrderDomain;
 
 namespace RewardsPlus.Infrastructure.Persistence.Context;
 

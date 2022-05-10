@@ -7,7 +7,7 @@ public class SearchCashRequest : PaginationFilter, IRequest<PaginationResponse<C
 {
 }
 
-public class TokenBySearchRequestSpec : EntitiesByPaginationFilterSpec<Domain.Cash.Cash, CashDto>
+public class TokenBySearchRequestSpec : EntitiesByPaginationFilterSpec<Domain.CashDomain.Cash, CashDto>
 {
     public TokenBySearchRequestSpec(SearchCashRequest request)
         : base(request) =>
@@ -16,8 +16,8 @@ public class TokenBySearchRequestSpec : EntitiesByPaginationFilterSpec<Domain.Ca
 
 public class SearchTokensRequestHandler : IRequestHandler<SearchCashRequest, PaginationResponse<CashDto>>
 {
-    private readonly IReadRepository<Domain.Cash.Cash> _repository;
-    public SearchTokensRequestHandler(IReadRepository<Domain.Cash.Cash> repository) => _repository = repository;
+    private readonly IReadRepository<Domain.CashDomain.Cash> _repository;
+    public SearchTokensRequestHandler(IReadRepository<Domain.CashDomain.Cash> repository) => _repository = repository;
 
     public async Task<PaginationResponse<CashDto>> Handle(SearchCashRequest request, CancellationToken cancellationToken)
     {

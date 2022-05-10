@@ -4,13 +4,13 @@ public class Product : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; } = default!;
     public string? Description { get; private set; }
-    public decimal Rate { get; private set; }
+    public double Rate { get; private set; }
     public string? ImagePath { get; private set; }
     public Guid BrandId { get; private set; }
     public virtual Brand Brand { get; private set; } = default!;
     public long? Quantity { get; private set; }
 
-    public Product(string name, string? description, decimal rate, Guid brandId, string? imagePath)
+    public Product(string name, string? description, double rate, Guid brandId, string? imagePath)
     {
         Name = name;
         Description = description;
@@ -19,7 +19,7 @@ public class Product : AuditableEntity, IAggregateRoot
         BrandId = brandId;
     }
 
-    public Product Update(string? name, string? description, decimal? rate, Guid? brandId, string? imagePath)
+    public Product Update(string? name, string? description, double? rate, Guid? brandId, string? imagePath)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (description is not null && Description?.Equals(description) is not true) Description = description;

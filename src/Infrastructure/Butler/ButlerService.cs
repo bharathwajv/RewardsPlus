@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using RewardsPlus.Application.Cash;
 using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Application.Order;
 using RewardsPlus.Domain.Catalog;
+using RewardsPlus.Domain.OrderDomain;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 
@@ -17,11 +19,12 @@ internal class ButlerService : IButlerService
 
     public async Task<string> PlaceOrder(BuyProductRequest request, CancellationToken cancellationToken)
     {
-        _currentUser.GetUserEmail();
-        Product product = await _repository.GetByIdAsync(request.ProductName, cancellationToken);
-        if (product == null)
-            throw new Exception("Product not found");
+        var product = await _repository.GetByIdAsync(request.ProductId);
 
+        await _mediator.Send(new RedeemCashRequest(product.Rate), cancellationToken);
+        await _mediator.Send(new CreateOrderRequest(request.ProductId, OrderStatus.Ordered), cancellationToken);
+
+        //move validations to validator
         //if (product.Quantity > 0)
         //{
         //    //product.Update(quantity)

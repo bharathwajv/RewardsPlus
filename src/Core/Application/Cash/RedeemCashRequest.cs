@@ -3,6 +3,11 @@ namespace RewardsPlus.Application.Cash;
 // will be used from  buy Items service
 public class RedeemCashRequest : IRequest<string>
 {
+    public RedeemCashRequest(double amount)
+    {
+        this.Amount = amount;
+    }
+
     public double Amount { get; set; }
 }
 
