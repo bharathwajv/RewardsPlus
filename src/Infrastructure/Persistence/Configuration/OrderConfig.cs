@@ -9,6 +9,6 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder) =>
         builder
-            .ToTable(TableNames.Order, SchemaNames.Application)
+            .ToTable(TableNames.Orders, SchemaNames.Application)
             .IsMultiTenant();
 }

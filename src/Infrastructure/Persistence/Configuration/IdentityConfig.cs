@@ -11,7 +11,7 @@ public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder
-            .ToTable(TableNames.User, SchemaNames.Identity)
+            .ToTable(TableNames.Users, SchemaNames.Identity)
             .IsMultiTenant();
 
         builder

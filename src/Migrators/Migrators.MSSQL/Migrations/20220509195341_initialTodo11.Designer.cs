@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RewardsPlus.Infrastructure.Persistence.Context;
 
@@ -11,9 +12,10 @@ using RewardsPlus.Infrastructure.Persistence.Context;
 namespace Migrators.MSSQL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509195341_initialTodo11")]
+    partial class initialTodo11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,7 +228,7 @@ namespace Migrators.MSSQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", "Catalog");
+                    b.ToTable("Brand", "Catalog");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -285,7 +287,7 @@ namespace Migrators.MSSQL.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", "Catalog");
+                    b.ToTable("Product", "Catalog");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -329,7 +331,7 @@ namespace Migrators.MSSQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders", "Application");
+                    b.ToTable("Order", "Application");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -534,7 +536,7 @@ namespace Migrators.MSSQL.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users", "Identity");
+                    b.ToTable("User", "Identity");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
