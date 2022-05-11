@@ -20,8 +20,22 @@ public class OrderController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    //order by id specification
+    [HttpGet("{id:guid}")]
+    [MustHavePermission(FSHAction.View, FSHResource.Order)]
+    [OpenApiOperation("Get order details.", "")]
+    public Task<OrderDto> GetAsync(Guid id)
+    {
+        return Mediator.Send(new GetOrderRequest(id));
+    }
 
+    //change order status
+    [HttpPut("update-status")]
+    [MustHavePermission(FSHAction.Search, FSHResource.Order)]
+    [OpenApiOperation("Update orders only by super admin token.", "")]
+    public async Task<ActionResult<string>> UpdateStatusAsync(UpdateOrderRequest request)
+    {
+        return Ok(await Mediator.Send(request));
+    }
 
     //deliver
     //Hangfire job 

@@ -7,7 +7,7 @@ public class Order : AuditableEntity, IAggregateRoot
     public OrderStatus Status { get; private set; }
     public string StatusMessage
     {
-        get { return Status.ToString(); }
+        get { return this.Status.ToString(); }
     }
 
     public Order(Guid productId, string userEmail, OrderStatus status)
@@ -17,18 +17,11 @@ public class Order : AuditableEntity, IAggregateRoot
         Status = status;
     }
 
-    public Order Update(Guid productId, string userEmail, OrderStatus status)
+    public Order Update(Guid productId, OrderStatus status)
     {
         if (productId != new Guid() && ProductId.Equals(productId) is not true) ProductId = productId;
-        if (userEmail is not null && UserEmail?.Equals(userEmail) is not true) UserEmail = userEmail;
         if (!Status.Equals(status)) Status = status;
+
         return this;
     }
-}
-
-public enum OrderStatus
-{
-    Ordered,
-    Delivered,
-    OutOfStock
 }
