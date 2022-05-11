@@ -28,7 +28,6 @@ public class OrderController : VersionedApiController
         return Mediator.Send(new GetOrderRequest(id));
     }
 
-    //change order status
     [HttpPut("update-status")]
     [MustHavePermission(FSHAction.Search, FSHResource.Order)]
     [OpenApiOperation("Update orders only by super admin token.", "")]
