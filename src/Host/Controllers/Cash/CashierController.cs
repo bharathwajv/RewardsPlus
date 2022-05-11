@@ -1,5 +1,4 @@
 using RewardsPlus.Application.Cash;
-using RewardsPlus.Application.Token;
 
 namespace RewardsPlus.Host.Controllers.Multitenancy;
 

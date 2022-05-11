@@ -1,6 +1,4 @@
-﻿using RewardsPlus.Application.Token;
-
-namespace RewardsPlus.Application.Cash;
+﻿namespace RewardsPlus.Application.Cash;
 
 public interface ICashierService : ITransientService
 {

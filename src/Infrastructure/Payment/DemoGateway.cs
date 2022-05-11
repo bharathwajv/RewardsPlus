@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using RewardsPlus.Application.Common.Interfaces;
 using RewardsPlus.Application.Payment;  //AskExperts
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
