@@ -7,9 +7,9 @@ AskExperts- ask with experts later
 ToDoLater - ok it explains itself
 GoodIdea - great ideas 
 
-Multi tenant Use Case:
+Multi tenant Use Case: 
 
-1,Need: Employee rewards hub 
+1, Need: Employee rewards hub 
 2, Employees should be able to claim different kinds of rewards(eg: Amazon gift card) 
   based on available reward tokens
 3, Reward tokens can be provided to users by leadership
@@ -20,7 +20,7 @@ ToDo:
 1, Admin for a tenant to manage roles of users and leadership
 2, Super admin for managing all tenents
 3, Cart and points distribution
-4,Team mode(equal distribution) etc..
+4, Team mode(equal distribution) etc..
 
 Features :
 
@@ -45,6 +45,8 @@ All kinds of settings
 
 In progress
 // buy Items service
+// Hang fire to dispatch items
+// Signar noti on new purchase or order status change
 
 
 DEV CONFIG 
