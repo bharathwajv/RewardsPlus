@@ -7,6 +7,23 @@ AskExperts- ask with experts later
 ToDoLater - ok it explains itself
 GoodIdea - great ideas 
 
+In progress
+
+// Hang fire to dispatch items - delivery boyservice
+
+// Signar noti on new purchase or order status change
+
+// Message templates
+
+Done:
+
+// Gift tokens - cashier service
+
+// Buy tokens- cashier service
+
+// Buy Items service - butler service
+
+
 Multi tenant Use Case: 
 
 1, Need: Employee rewards hub 
@@ -43,15 +60,6 @@ View tenant details
 Activate and deactivate tenants
 All kinds of settings
 
-In progress
-// Message templates
-// Hang fire to dispatch items
-// Signar noti on new purchase or order status change
-
-Done:
-// Gift tokens
-// Buy topkens
-// buy Items service
 
 DEV CONFIG 
 
