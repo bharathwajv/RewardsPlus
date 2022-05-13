@@ -33,7 +33,7 @@ public class OrderController : VersionedApiController
     [OpenApiOperation("Update orders only by super admin token.", "")]
     public async Task<ActionResult<string>> UpdateStatusAsync(UpdateOrderRequest request, CancellationToken cancellationToken)
     {
-        return Ok(await Mediator.Send(request), cancellationToken);
+        return Ok(await Mediator.Send(request, cancellationToken));
     }
 
     //deliver
