@@ -7,59 +7,59 @@ public class BrandsController : VersionedApiController
     [HttpPost("search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Brands)]
     [OpenApiOperation("Search brands using available filters.", "")]
-    public Task<PaginationResponse<BrandDto>> SearchAsync(SearchBrandsRequest request)
+    public Task<PaginationResponse<BrandDto>> SearchAsync(SearchBrandsRequest request, CancellationToken cancellationToken)
     {
-        return Mediator.Send(request);
+        return Mediator.Send(request, cancellationToken);
     }
 
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.Brands)]
     [OpenApiOperation("Get brand details.", "")]
-    public Task<BrandDto> GetAsync(Guid id)
+    public Task<BrandDto> GetAsync(Guid id, CancellationToken cancellationToken)
     {
-        return Mediator.Send(new GetBrandRequest(id));
+        return Mediator.Send(new GetBrandRequest(id), cancellationToken);
     }
 
     [HttpPost]
     [MustHavePermission(FSHAction.Create, FSHResource.Brands)]
     [OpenApiOperation("Create a new brand.", "")]
-    public Task<Guid> CreateAsync(CreateBrandRequest request)
+    public Task<Guid> CreateAsync(CreateBrandRequest request, CancellationToken cancellationToken)
     {
-        return Mediator.Send(request);
+        return Mediator.Send(request, cancellationToken);
     }
 
     [HttpPut("{id:guid}")]
     [MustHavePermission(FSHAction.Update, FSHResource.Brands)]
     [OpenApiOperation("Update a brand.", "")]
-    public async Task<ActionResult<Guid>> UpdateAsync(UpdateBrandRequest request, Guid id)
+    public async Task<ActionResult<Guid>> UpdateAsync(UpdateBrandRequest request, Guid id, CancellationToken cancellationToken)
     {
         return id != request.Id
             ? BadRequest()
-            : Ok(await Mediator.Send(request));
+            : Ok(await Mediator.Send(request, cancellationToken));
     }
 
     [HttpDelete("{id:guid}")]
     [MustHavePermission(FSHAction.Delete, FSHResource.Brands)]
     [OpenApiOperation("Delete a brand.", "")]
-    public Task<Guid> DeleteAsync(Guid id)
+    public Task<Guid> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        return Mediator.Send(new DeleteBrandRequest(id));
+        return Mediator.Send(new DeleteBrandRequest(id), cancellationToken);
     }
 
     [HttpPost("generate-random")]
     [MustHavePermission(FSHAction.Generate, FSHResource.Brands)]
     [OpenApiOperation("Generate a number of random brands.", "")]
-    public Task<string> GenerateRandomAsync(GenerateRandomBrandRequest request)
+    public Task<string> GenerateRandomAsync(GenerateRandomBrandRequest request, CancellationToken cancellationToken)
     {
-        return Mediator.Send(request);
+        return Mediator.Send(request, cancellationToken);
     }
 
     [HttpDelete("delete-random")]
     [MustHavePermission(FSHAction.Clean, FSHResource.Brands)]
     [OpenApiOperation("Delete the brands generated with the generate-random call.", "")]
-    [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Search))]
-    public Task<string> DeleteRandomAsync()
+    [ApiConventionMethod(typeof(RPApiConventions), nameof(RPApiConventions.Search))]
+    public Task<string> DeleteRandomAsync(CancellationToken cancellationToken)
     {
-        return Mediator.Send(new DeleteRandomBrandRequest());
+        return Mediator.Send(new DeleteRandomBrandRequest(), cancellationToken);
     }
 }

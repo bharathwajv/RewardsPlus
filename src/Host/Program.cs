@@ -6,7 +6,7 @@ using RewardsPlus.Infrastructure;
 using RewardsPlus.Infrastructure.Common;
 using Serilog;
 
-[assembly: ApiConventionType(typeof(FSHApiConventions))]
+[assembly: ApiConventionType(typeof(RPApiConventions))]
 
 StaticLogger.EnsureInitialized();
 Log.Information("Server Booting Up...");

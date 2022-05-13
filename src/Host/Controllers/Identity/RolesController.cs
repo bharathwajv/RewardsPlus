@@ -19,9 +19,9 @@ public class RolesController : VersionNeutralApiController
     [HttpGet("{id}")]
     [MustHavePermission(FSHAction.View, FSHResource.Roles)]
     [OpenApiOperation("Get role details.", "")]
-    public Task<RoleDto> GetByIdAsync(string id)
+    public Task<RoleDto> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
-        return _roleService.GetByIdAsync(id);
+        return _roleService.GetByIdAsync(id, cancellationToken);
     }
 
     [HttpGet("{id}/permissions")]
@@ -41,7 +41,6 @@ public class RolesController : VersionNeutralApiController
         {
             return BadRequest();
         }
-
         return Ok(await _roleService.UpdatePermissionsAsync(request, cancellationToken));
     }
 

@@ -109,7 +109,7 @@ internal static class Startup
                 {
                     options.OAuth2Client = new OAuth2ClientSettings
                     {
-                        AppName = "Full Stack Hero Api Client",
+                        AppName = "Rewards Plus Api Client",
                         ClientId = config["SecuritySettings:Swagger:OpenIdClientId"],
                         UsePkceWithAuthorizationCodeGrant = true,
                         ScopeSeparator = " "

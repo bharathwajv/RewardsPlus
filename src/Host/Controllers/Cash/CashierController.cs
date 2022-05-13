@@ -7,32 +7,32 @@ public class CashierController : VersionedApiController
     [HttpGet("getallbalance")]
     [MustHavePermission(FSHAction.View, FSHResource.Cashier)]
     [OpenApiOperation("Search tokens.", "")]
-    public Task<List<CashDto>> GetListAsync()
+    public Task<List<CashDto>> GetListAsync(CancellationToken cancellationToken)
     {
-        return Mediator.Send(new GetAllCashRequest());
+        return Mediator.Send(new GetAllCashRequest(), cancellationToken);
     }
 
     [HttpPost("gift")]
     [MustHavePermission(FSHAction.GiftCash, FSHResource.Cashier)]
     [OpenApiOperation("GiftToken to other users.", "")]
-    public Task<string> GiftCashAsync(GiftCashRequest request)
+    public Task<string> GiftCashAsync(GiftCashRequest request, CancellationToken cancellationToken)
     {
-        return Mediator.Send(request);
+        return Mediator.Send(request, cancellationToken);
     }
 
     [HttpGet("balance")]
     [OpenApiOperation("View current balance", "")]
-    public Task<double> GetCurrentBalance()
+    public Task<double> GetCurrentBalance(CancellationToken cancellationToken)
     {
-        return Mediator.Send(new GetCashBalanceRequest());
+        return Mediator.Send(new GetCashBalanceRequest(), cancellationToken);
     }
 
     [HttpPost("buy")]
     [MustHavePermission(FSHAction.GiftCash, FSHResource.Cashier)]
     [OpenApiOperation("GiftToken to other users.", "")]
-    public Task<string> BuyCashAsync(BuyCashRequest request)
+    public Task<string> BuyCashAsync(BuyCashRequest request, CancellationToken cancellationToken)
     {
-        return Mediator.Send(request);
+        return Mediator.Send(request, cancellationToken);
     }
 
     //[HttpGet("{id}")]
