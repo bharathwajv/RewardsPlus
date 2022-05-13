@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Domain.Common.Contracts;
@@ -19,26 +20,21 @@ internal static class Startup
 
     internal static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration config)
     {
-        // TODO: there must be a cleaner way to do IOptions validation...
-        var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
-        string? rootConnectionString = databaseSettings.ConnectionString;
-        if (string.IsNullOrEmpty(rootConnectionString))
-        {
-            throw new InvalidOperationException("DB ConnectionString is not configured.");
-        }
-
-        string? dbProvider = databaseSettings.DBProvider;
-        if (string.IsNullOrEmpty(dbProvider))
-        {
-            throw new InvalidOperationException("DB Provider is not configured.");
-        }
-
-        _logger.Information($"Current DB Provider : {dbProvider}");
+       services.AddOptions<DatabaseSettings>()
+            .BindConfiguration(nameof(DatabaseSettings))
+            .PostConfigure(databaseSettings =>
+            {
+                _logger.Information("Current DB Provider: {dbProvider}", databaseSettings.DBProvider);
+            })
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         return services
-            .Configure<DatabaseSettings>(config.GetSection(nameof(DatabaseSettings)))
-
-            .AddDbContext<ApplicationDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
+            .AddDbContext<ApplicationDbContext>((p, m) =>
+            {
+                var databaseSettings = p.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+                m.UseDatabase(databaseSettings.DBProvider, databaseSettings.ConnectionString);
+            })
 
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<ApplicationDbInitializer>()
@@ -57,7 +53,6 @@ internal static class Startup
         switch (dbProvider.ToLowerInvariant())
         {
             case DbProviderKeys.Npgsql:
-                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                 return builder.UseNpgsql(connectionString, e =>
                      e.MigrationsAssembly("Migrators.PostgreSQL"));
 
@@ -73,6 +68,10 @@ internal static class Startup
             case DbProviderKeys.Oracle:
                 return builder.UseOracle(connectionString, e =>
                      e.MigrationsAssembly("Migrators.Oracle"));
+
+            case DbProviderKeys.SqLite:
+                return builder.UseSqlite(connectionString, e =>
+                     e.MigrationsAssembly("Migrators.SqLite"));
 
             default:
                 throw new InvalidOperationException($"DB Provider {dbProvider} is not supported.");
@@ -93,6 +92,7 @@ internal static class Startup
             services.AddScoped(typeof(IReadRepository<>).MakeGenericType(aggregateRootType), sp =>
                 sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(aggregateRootType)));
 
+            //GoodIdea 
             // Decorate the repositories with EventAddingRepositoryDecorators and expose them as IRepositoryWithEvents.
             services.AddScoped(typeof(IRepositoryWithEvents<>).MakeGenericType(aggregateRootType), sp =>
                 Activator.CreateInstance(

@@ -7,6 +7,7 @@ using RewardsPlus.Application.Token;
 using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Shared.Authorization;
 using RewardsPlus.Shared.Multitenancy;
+using Microsoft.Extensions.Options;
 
 namespace RewardsPlus.Infrastructure.Multitenancy;
 
@@ -14,15 +15,13 @@ internal static class Startup
 {
     internal static IServiceCollection AddMultitenancy(this IServiceCollection services, IConfiguration config)
     {
-        // TODO: We should probably add specific dbprovider/connectionstring setting for the tenantDb with a fallback to the main databasesettings
-        var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
-        string? rootConnectionString = databaseSettings.ConnectionString;
-        if (string.IsNullOrEmpty(rootConnectionString)) throw new InvalidOperationException("DB ConnectionString is not configured.");
-        string? dbProvider = databaseSettings.DBProvider;
-        if (string.IsNullOrEmpty(dbProvider)) throw new InvalidOperationException("DB Provider is not configured.");
-
-        return services
-            .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
+         return services
+            .AddDbContext<TenantDbContext>((p, m) =>
+            {
+                // TODO: We should probably add specific dbprovider/connectionstring setting for the tenantDb with a fallback to the main databasesettings
+                var databaseSettings = p.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+                m.UseDatabase(databaseSettings.DBProvider, databaseSettings.ConnectionString);
+            })
             .AddMultiTenant<FSHTenantInfo>()
                 .WithClaimStrategy(FSHClaims.Tenant)
                 .WithHeaderStrategy(MultitenancyConstants.TenantIdName)

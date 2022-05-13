@@ -21,6 +21,9 @@ using RewardsPlus.Infrastructure.Persistence;
 using RewardsPlus.Infrastructure.Persistence.Initialization;
 using RewardsPlus.Infrastructure.SecurityHeaders;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Infrastructure.Test")]
 
 namespace RewardsPlus.Infrastructure;
 
@@ -37,7 +40,7 @@ public static class Startup
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
             .AddHealthCheck()
-            .AddLocalization(config)
+            .AddPOLocalization(config)
             .AddMailing(config)
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddMultitenancy(config)
@@ -71,7 +74,7 @@ public static class Startup
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder
-            .UseLocalization(config)
+            .UseRequestLocalization()
             .UseStaticFiles()
             .UseSecurityHeaders(config)
             .UseFileStorage()

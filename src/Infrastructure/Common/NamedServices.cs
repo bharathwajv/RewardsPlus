@@ -21,7 +21,7 @@ internal static class NamedServices
                 case BuyMode.Stripe:
                     return serviceProvider?.GetService<StripeGateway>();
                 default:
-                    throw new NotSupportedException($"PaymentGatewayResolver, key: {key}");
+                    throw new NotSupportedException($"PaymentGatewayResolver, key: {key} Not Supported");
             }
         });
     }

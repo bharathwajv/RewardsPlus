@@ -34,6 +34,7 @@ internal class ApplicationDbSeeder
         await SeedRolesAsync(dbContext);
         await SeedAdminUserAsync();
         await _seederRunner.RunSeedersAsync(cancellationToken);
+        //ToDoLater  - hangfire run recoruing cron job 
     }
 
     private async Task SeedRolesAsync(ApplicationDbContext dbContext)

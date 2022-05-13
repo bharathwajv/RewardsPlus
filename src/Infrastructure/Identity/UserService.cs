@@ -17,7 +17,6 @@ using RewardsPlus.Application.Common.Specification;
 using RewardsPlus.Application.Identity.Users;
 using RewardsPlus.Domain.Identity;
 using RewardsPlus.Infrastructure.Auth;
-using RewardsPlus.Infrastructure.Mailing;
 using RewardsPlus.Infrastructure.Persistence.Context;
 using RewardsPlus.Shared.Authorization;
 
@@ -29,10 +28,9 @@ internal partial class UserService : IUserService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly ApplicationDbContext _db;
-    private readonly IStringLocalizer<UserService> _localizer;
+    private readonly IStringLocalizer _t;
     private readonly IJobService _jobService;
     private readonly IMailService _mailService;
-    private readonly MailSettings _mailSettings;
     private readonly SecuritySettings _securitySettings;
     private readonly IEmailTemplateService _templateService;
     private readonly IFileStorageService _fileStorage;
@@ -49,7 +47,6 @@ internal partial class UserService : IUserService
         IStringLocalizer<UserService> localizer,
         IJobService jobService,
         IMailService mailService,
-        IOptions<MailSettings> mailSettings,
         IEmailTemplateService templateService,
         IFileStorageService fileStorage,
         IEventPublisher events,
@@ -62,10 +59,9 @@ internal partial class UserService : IUserService
         _userManager = userManager;
         _roleManager = roleManager;
         _db = db;
-        _localizer = localizer;
+        _t = localizer;
         _jobService = jobService;
         _mailService = mailService;
-        _mailSettings = mailSettings.Value;
         _templateService = templateService;
         _fileStorage = fileStorage;
         _events = events;
@@ -111,7 +107,7 @@ internal partial class UserService : IUserService
     {
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
-            throw new UnauthorizedException(_localizer["tenant.invalid"]);
+            throw new UnauthorizedException(_t["Invalid Tenant."]);
         }
     }
 
@@ -131,7 +127,7 @@ internal partial class UserService : IUserService
             .Where(u => u.Id == userId)
             .FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
+        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
 
         return user.Adapt<UserDetailsDto>();
     }
@@ -140,12 +136,12 @@ internal partial class UserService : IUserService
     {
         var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
+        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
 
         bool isAdmin = await _userManager.IsInRoleAsync(user, FSHRoles.Admin);
         if (isAdmin)
         {
-            throw new ConflictException(_localizer["Administrators Profile's Status cannot be toggled"]);
+            throw new ConflictException(_t["Administrators Profile's Status cannot be toggled"]);
         }
 
         user.IsActive = request.ActivateUser;

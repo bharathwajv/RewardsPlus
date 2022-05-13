@@ -35,4 +35,7 @@ public interface IJobService : ITransientService
     bool Requeue(string jobId);
 
     bool Requeue(string jobId, string fromState);
+
+    void RecurringMinutely(string jobId, Expression<Action> methodCall);
+
 }

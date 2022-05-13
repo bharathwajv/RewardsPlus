@@ -15,10 +15,10 @@ internal class TenantService : ITenantService
     private readonly IMultiTenantStore<FSHTenantInfo> _tenantStore;
     private readonly IConnectionStringSecurer _csSecurer;
     private readonly IDatabaseInitializer _dbInitializer;
-    private readonly IStringLocalizer<TenantService> _localizer;
+    private readonly IStringLocalizer _t;
     private readonly DatabaseSettings _dbSettings;
 
-    public TenantService(
+   public TenantService(
         IMultiTenantStore<FSHTenantInfo> tenantStore,
         IConnectionStringSecurer csSecurer,
         IDatabaseInitializer dbInitializer,
@@ -28,7 +28,7 @@ internal class TenantService : ITenantService
         _tenantStore = tenantStore;
         _csSecurer = csSecurer;
         _dbInitializer = dbInitializer;
-        _localizer = localizer;
+        _t = localizer;
         _dbSettings = dbSettings.Value;
     }
 
@@ -51,7 +51,7 @@ internal class TenantService : ITenantService
 
     public async Task<string> CreateAsync(CreateTenantRequest request, CancellationToken cancellationToken)
     {
-        if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString?.Trim()) request.ConnectionString = string.Empty;
+        if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString.Trim()) request.ConnectionString = string.Empty;
 
         var tenant = new FSHTenantInfo(request.Id, request.Name, request.ConnectionString, request.AdminEmail, request.Issuer);
         await _tenantStore.TryAddAsync(tenant);
@@ -76,14 +76,14 @@ internal class TenantService : ITenantService
 
         if (tenant.IsActive)
         {
-            throw new ConflictException("Tenant is already Activated.");
+            throw new ConflictException(_t["Tenant is already Activated."]);
         }
 
         tenant.Activate();
 
         await _tenantStore.TryUpdateAsync(tenant);
 
-        return $"Tenant {id} is now Activated.";
+        return _t["Tenant {0} is now Activated.", id];
     }
 
     public async Task<string> DeactivateAsync(string id)
@@ -92,14 +92,14 @@ internal class TenantService : ITenantService
 
         if (!tenant.IsActive)
         {
-            throw new ConflictException("Tenant is already Deactivated.");
+            throw new ConflictException(_t["Tenant is already Deactivated."]);
         }
 
         tenant.Deactivate();
 
         await _tenantStore.TryUpdateAsync(tenant);
 
-        return $"Tenant {id} is now Deactivated.";
+        return _t[$"Tenant {0} is now Deactivated.", id];
     }
 
     public async Task<string> UpdateSubscription(string id, DateTime extendedExpiryDate)
@@ -110,10 +110,10 @@ internal class TenantService : ITenantService
 
         await _tenantStore.TryUpdateAsync(tenant);
 
-        return $"Tenant {id}'s Subscription Upgraded. Now Valid till {tenant.ValidUpto}.";
+        return _t[$"Tenant {0}'s Subscription Upgraded. Now Valid till {1}.", id, tenant.ValidUpto];
     }
 
     private async Task<FSHTenantInfo> GetTenantInfoAsync(string id) =>
         await _tenantStore.TryGetAsync(id)
-            ?? throw new NotFoundException(string.Format(_localizer["entity.notfound"], typeof(FSHTenantInfo).Name, id));
+            ?? throw new NotFoundException(_t["{0} {1} Not Found.", typeof(FSHTenantInfo).Name, id]);
 }

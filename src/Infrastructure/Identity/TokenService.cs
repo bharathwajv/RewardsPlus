@@ -19,7 +19,7 @@ namespace RewardsPlus.Infrastructure.Identity;
 internal class TokenService : ITokenService
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IStringLocalizer<TokenService> _localizer;
+    private readonly IStringLocalizer _t;
     private readonly SecuritySettings _securitySettings;
     private readonly JwtSettings _jwtSettings;
     private readonly FSHTenantInfo? _currentTenant;
@@ -32,7 +32,7 @@ internal class TokenService : ITokenService
         IOptions<SecuritySettings> securitySettings)
     {
         _userManager = userManager;
-        _localizer = localizer;
+        _t = localizer;
         _jwtSettings = jwtSettings.Value;
         _currentTenant = currentTenant;
         _securitySettings = securitySettings.Value;
@@ -40,43 +40,35 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
+        if (string.IsNullOrWhiteSpace(_currentTenant?.Id)
+            || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
+            || !await _userManager.CheckPasswordAsync(user, request.Password))
         {
-            throw new UnauthorizedException(_localizer["tenant.invalid"]);
-        }
 
-        var user = await _userManager.FindByEmailAsync(request.Email.Trim().Normalize());
-        if (user is null)
-        {
-            throw new UnauthorizedException(_localizer["auth.failed"]);
+            throw new UnauthorizedException(_t["Authentication Failed."]);
         }
 
         if (!user.IsActive)
         {
-            throw new UnauthorizedException(_localizer["identity.usernotactive"]);
+            throw new UnauthorizedException(_t["User Not Active. Please contact the administrator."]);
         }
 
         if (_securitySettings.RequireConfirmedAccount && !user.EmailConfirmed)
         {
-            throw new UnauthorizedException(_localizer["identity.emailnotconfirmed"]);
+            throw new UnauthorizedException(_t["E-Mail not confirmed."]);
         }
 
         if (_currentTenant.Id != MultitenancyConstants.Root.Id)
         {
             if (!_currentTenant.IsActive)
             {
-                throw new UnauthorizedException(_localizer["tenant.inactive"]);
+                throw new UnauthorizedException(_t["Tenant is not Active. Please contact the Application Administrator."]);
             }
 
             if (DateTime.UtcNow > _currentTenant.ValidUpto)
             {
-                throw new UnauthorizedException(_localizer["tenant.expired"]);
+                throw new UnauthorizedException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."]);
             }
-        }
-
-        if (!await _userManager.CheckPasswordAsync(user, request.Password))
-        {
-            throw new UnauthorizedException(_localizer["identity.invalidcredentials"]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -89,12 +81,12 @@ internal class TokenService : ITokenService
         var user = await _userManager.FindByEmailAsync(userEmail);
         if (user is null)
         {
-            throw new UnauthorizedException(_localizer["auth.failed"]);
+            throw new UnauthorizedException(_t["Authentication Failed."]);
         }
 
         if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
-            throw new UnauthorizedException(_localizer["identity.invalidrefreshtoken"]);
+            throw new UnauthorizedException(_t["Invalid Refresh Token."]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -120,7 +112,7 @@ internal class TokenService : ITokenService
         {
             new(ClaimTypes.NameIdentifier, user.Id),
             new(ClaimTypes.Email, user.Email),
-            new(FSHClaims.Fullname, user.UserName),
+            new(FSHClaims.UserName,user.UserName),
             new(FSHClaims.IpAddress, ipAddress),
             new(FSHClaims.Tenant, _currentTenant!.Id),
             new(FSHClaims.ImageUrl, user.ImageUrl ?? string.Empty),
@@ -147,11 +139,6 @@ internal class TokenService : ITokenService
 
     private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
     {
-        if (string.IsNullOrEmpty(_jwtSettings.Key))
-        {
-            throw new InvalidOperationException("No Key defined in JwtSettings config.");
-        }
-
         var tokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
@@ -169,7 +156,7 @@ internal class TokenService : ITokenService
                 SecurityAlgorithms.HmacSha256,
                 StringComparison.InvariantCultureIgnoreCase))
         {
-            throw new UnauthorizedException(_localizer["identity.invalidtoken"]);
+            throw new UnauthorizedException(_t["Invalid Token."]);
         }
 
         return principal;
@@ -177,11 +164,6 @@ internal class TokenService : ITokenService
 
     private SigningCredentials GetSigningCredentials()
     {
-        if (string.IsNullOrEmpty(_jwtSettings.Key))
-        {
-            throw new InvalidOperationException("No Key defined in JwtSettings config.");
-        }
-
         byte[] secret = Encoding.UTF8.GetBytes(_jwtSettings.Key);
         return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
     }

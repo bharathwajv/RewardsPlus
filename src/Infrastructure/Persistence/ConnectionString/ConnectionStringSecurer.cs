@@ -6,6 +6,10 @@ using RewardsPlus.Application.Common.Persistence;
 using RewardsPlus.Infrastructure.Common;
 using System.Data.SqlClient;
 
+using Microsoft.Data.Sqlite;
+
+using System.Runtime.InteropServices;
+
 namespace RewardsPlus.Infrastructure.Persistence.ConnectionString;
 
 public class ConnectionStringSecurer : IConnectionStringSecurer
@@ -33,6 +37,7 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
             DbProviderKeys.Npgsql => MakeSecureNpgsqlConnectionString(connectionString),
             DbProviderKeys.SqlServer => MakeSecureSqlConnectionString(connectionString),
             DbProviderKeys.MySql => MakeSecureMySqlConnectionString(connectionString),
+            DbProviderKeys.SqLite => MakeSecureSqLiteConnectionString(connectionString),
             DbProviderKeys.Oracle => MakeSecureOracleConnectionString(connectionString),
             _ => connectionString
         };
@@ -88,6 +93,14 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
 
         return builder.ToString();
     }
+
+    private string MakeSecureSqLiteConnectionString(string connectionString)
+    {
+        var builder = new SqliteConnection(connectionString);
+
+        return builder.ToString();
+    }
+
 
     private string MakeSecureNpgsqlConnectionString(string connectionString)
     {
