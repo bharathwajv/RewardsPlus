@@ -45,10 +45,13 @@ All kinds of settings
 
 In progress
 // Message templates
-// buy Items service
 // Hang fire to dispatch items
 // Signar noti on new purchase or order status change
 
+Done:
+// Gift tokens
+// Buy topkens
+// buy Items service
 
 DEV CONFIG 
 
