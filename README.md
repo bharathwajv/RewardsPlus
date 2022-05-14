@@ -1,5 +1,5 @@
 # RewardsPlus
-Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations
+Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
 Keywords in Code
 
@@ -18,7 +18,11 @@ In progress
 
 // Signar noti on new purchase or order status change
 
-// Message templates - with transaction history
+//Employee monthly subscriptions from employerr
+
+// complate ToDoLater stuffs in code
+
+// AskExperts on Archictcture
 
 Done:
 
@@ -27,6 +31,8 @@ Done:
 // Buy tokens- cashier service
 
 // Buy Items service - butler service
+
+// Message templates - with transaction history
 
 
 Multi tenant Use Case: 
