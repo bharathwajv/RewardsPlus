@@ -87,7 +87,7 @@ internal class CashierService : ICashierService
     //  ToDoLater -  should move validation to validator in Application
     private static void ValidateBeforeGifting(GiftCashRequest request, Cash? curentUserTokenInfo)
     {
-        if (curentUserTokenInfo != null && curentUserTokenInfo.Balance < request.Amount)
+        if (curentUserTokenInfo is null || curentUserTokenInfo.Balance < request.Amount)
             throw new Exception("Insufficient balance");
     }
 
