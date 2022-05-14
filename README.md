@@ -1,5 +1,5 @@
 # RewardsPlus
-Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations
+Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
 Keywords in Code
 
@@ -17,6 +17,8 @@ In progress
 // Hang fire to dispatch items - delivery boyservice
 
 // Signar noti on new purchase or order status change
+
+//Employee monthly subscriptions from employerr
 
 // complate ToDoLater stuffs in code
 
