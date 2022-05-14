@@ -2,10 +2,15 @@
 Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations
 
 Keywords in Code
+
 OFD - only for development 
+
 AskExperts- ask with experts later
+
 ToDoLater - ok it explains itself
+
 GoodIdea - great ideas 
+
 
 In progress
 
@@ -13,7 +18,7 @@ In progress
 
 // Signar noti on new purchase or order status change
 
-// Message templates
+// Message templates - with transaction history
 
 Done:
 
