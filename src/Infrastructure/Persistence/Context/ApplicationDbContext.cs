@@ -20,6 +20,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Cash> Cash => Set<Cash>(); // SchemaName defined in TokenConfig
     public DbSet<Order> Order => Set<Order>();
+    public DbSet<GiftingInfo> GiftingInfo => Set<GiftingInfo>();
 
     // sales delivery
 }

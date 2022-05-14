@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RewardsPlus.Application.Cash;
@@ -17,7 +18,8 @@ internal class CashierService : ICashierService
     private readonly ICurrentUser _currentUser;
     private readonly ILogger<CashierService> _logger;
     private readonly PaymentGatewayResolver _paymentGatewayResolver;
-    public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger, PaymentGatewayResolver paymentGatewayResolver) => (_currentUser, _context, _logger, _paymentGatewayResolver) = (currentUser, context, logger, paymentGatewayResolver);
+    private readonly ISender _mediator;
+    public CashierService(ICurrentUser currentUser, ApplicationDbContext context, ILogger<CashierService> logger, PaymentGatewayResolver paymentGatewayResolver, ISender mediator) => (_currentUser, _context, _logger, _paymentGatewayResolver, _mediator) = (currentUser, context, logger, paymentGatewayResolver, mediator);
 
     public async Task<List<CashDto>> GetAllAsync()
     {
@@ -40,12 +42,29 @@ internal class CashierService : ICashierService
 
     public async Task<string> GiftAsync(GiftCashRequest request, CancellationToken cancellationToken)
     {
-        var toUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.ToEmailId, cancellationToken: cancellationToken);
+        string? fromUser = _currentUser.GetUserEmail();
+        var toUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.ToUserEmail, cancellationToken: cancellationToken);
 
-        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
+        var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == fromUser);
 
-        ValidateBeforeGifting(request, toUser, curentUserTokenInfo);
+        ValidateBeforeGifting(request, curentUserTokenInfo);
+        UpdateToUserCash(request, toUser, cancellationToken);
 
+        //if success deduct
+        double newBalance = curentUserTokenInfo.Balance - request.Amount;
+        await _mediator.Send(new RedeemCashRequest(request.Amount), cancellationToken);
+
+        await StorGiftingInfo(request, fromUser, cancellationToken);
+
+        await _context.SaveChangesAsync(cancellationToken);
+
+        // ToDoLater - queue to mail user he is gifted
+        // ToDoLater - Send notification to user he is gifted
+        return newBalance.ToString();
+    }
+
+    private void UpdateToUserCash(GiftCashRequest request, ApplicationUser? toUser, CancellationToken cancellationToken)
+    {
         var toUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == toUser?.Email);
 
         if (toUserTokenInfo == null)
@@ -56,23 +75,18 @@ internal class CashierService : ICashierService
         {
             toUserTokenInfo.Update(toUserTokenInfo.Balance + request.Amount);
         }
-
-        //if success deduct
-        double newBalance = curentUserTokenInfo.Balance - request.Amount;
-        curentUserTokenInfo?.Update(newBalance);
-        await _context.SaveChangesAsync(cancellationToken);
-
-        return newBalance.ToString();
     }
 
-    private static void ValidateBeforeGifting(GiftCashRequest request, ApplicationUser? toUser, Cash? curentUserTokenInfo)
+    private async Task StorGiftingInfo(GiftCashRequest request, string? fromUser, CancellationToken cancellationToken)
     {
-        if (toUser == null)
-            throw new Exception("User not found");
+        request.FromUserEmail = fromUser;
+        var giftingInfo = request.Adapt<GiftingInfo>();
+        await _context.GiftingInfo.AddAsync(giftingInfo, cancellationToken);
+    }
 
-        if (curentUserTokenInfo != null && curentUserTokenInfo.UserId == toUser.Id)
-            throw new Exception("You can't gift to yourself");
-
+    //  ToDoLater -  should move validation to validator in Application
+    private static void ValidateBeforeGifting(GiftCashRequest request, Cash? curentUserTokenInfo)
+    {
         if (curentUserTokenInfo != null && curentUserTokenInfo.Balance < request.Amount)
             throw new Exception("Insufficient balance");
     }
@@ -126,6 +140,7 @@ internal class CashierService : ICashierService
         return string.Empty;
     }
 
+    //  ToDoLater -  should move validation to validator in Application
     private static void ValidateBeforeRedeem(RedeemCashRequest request, Cash? curentUserTokenInfo)
     {
         if (curentUserTokenInfo == null)

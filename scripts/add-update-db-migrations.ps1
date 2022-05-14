@@ -49,7 +49,7 @@ Write-Host "Adding Migrations for MSSQL Provider...Done`n"
 Write-Host "**************************`n"
 
 <# MySQL #>
-Write-Host "Updating Configurations for MySQL Provider..."
+<#Write-Host "Updating Configurations for MySQL Provider..."
 $databaseJsonContent.DatabaseSettings.DBProvider = "mysql"
 $databaseJsonContent.DatabaseSettings.ConnectionString = $mysqlConnectionString
 $databaseJsonContent | ConvertTo-Json | set-content $databaseJsonPath
@@ -64,7 +64,7 @@ Write-Host "Adding Migrations for MySQL Provider...Done`n"
 Write-Host "**************************`n"
 
 <# PostgreSQL #>
-Write-Host "Updating Configurations for PostgreSQL Provider..."
+<#Write-Host "Updating Configurations for PostgreSQL Provider..."
 $databaseJsonContent.DatabaseSettings.DBProvider = "postgresql"
 $databaseJsonContent.DatabaseSettings.ConnectionString = $postgresqlConnectionString
 $databaseJsonContent | ConvertTo-Json | set-content $databaseJsonPath
@@ -76,7 +76,7 @@ $hangfireJsonContent | ConvertTo-Json | set-content $hangfireJsonPath
 Write-Host "Adding Migrations for PostgreSQL Provider..."
 dotnet ef migrations add $commitMessage --project .././Migrators/Migrators.PostgreSQL/ --context ApplicationDbContext -o Migrations/Application
 Write-Host "Adding Migrations for PostgreSQL Provider...Done`n"
-Write-Host "**************************`n"
+Write-Host "**************************`n"#>
 
 <# Reset Configurations - Switch Back to Original Configurations #>
 Write-Host "Resetting Configurations to Orginal...`n"

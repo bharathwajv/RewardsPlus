@@ -2,7 +2,11 @@ namespace RewardsPlus.Application.Cash;
 
 public class GiftCashRequest : IRequest<string>
 {
-    public string ToEmailId { get; set; }
+    public string? FromUserEmail { get; set; }
+    public string ToUserEmail { get; set; }
+    public string GiftMessage { get; set; }
+    public string? GiftImage { get; set; }
+    public bool IsViewed { get; set; }
     public double Amount { get; set; }
 }
 

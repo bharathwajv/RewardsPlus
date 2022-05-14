@@ -11,7 +11,7 @@ public class DemoGateway : IPaymentGateway
     public async Task<bool> Sale(PayRequest request)
     {
         bool result = true;
-        _logger.LogInformation("Pay request approved for user '{request.UserName}' with amount '{request.Amount}'.", request.UserName, request.Amount);
+        _logger.LogInformation($"Pay request approved for user {request.UserName} with amount {request.Amount}.");
         return result;
     }
 }

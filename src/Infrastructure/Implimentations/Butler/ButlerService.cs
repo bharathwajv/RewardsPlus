@@ -34,8 +34,3 @@ internal class ButlerService : IButlerService
         return "Order placed successfully";
     }
 }
-//public class SelectedProductSpec : Specification<Product>
-//{
-//    public SelectedProductSpec(string id) =>
-//        Query.Where(b => !string.IsNullOrEmpty(b.Name) && b.Id.Equals(id));
-//}

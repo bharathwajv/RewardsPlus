@@ -31,6 +31,7 @@ public static class FSHResource
     public const string Brands = nameof(Brands);
     public const string Cashier = nameof(Cashier);
     public const string Order = nameof(Order);
+    public const string GiftMyInfo = nameof(GiftMyInfo);
 }
 
 public static class FSHPermissions
@@ -72,12 +73,12 @@ public static class FSHPermissions
         new("Upgrade Tenant Subscription", FSHAction.UpgradeSubscription, FSHResource.Tenants, IsRoot: true),
         new("View Tokens", FSHAction.View, FSHResource.Cashier),
         new("GiftToken to other users", FSHAction.GiftCash, FSHResource.Cashier, IsBasic: true), // basic users too can gift tokens to other users
+        new("View Gift info", FSHAction.View, FSHResource.GiftMyInfo, IsBasic: true),
         new("Buy Tokens", FSHAction.BuyCash, FSHResource.Cashier, IsBasic: true), // basic users too can buy tokens
         new("User Order/Butler service", FSHAction.UseService, FSHResource.Order, IsBasic: true),
         new("Search Order", FSHAction.Search, FSHResource.Order),
         new("Update Order", FSHAction.Update, FSHResource.Order, IsRoot: true),
-        new("View Tokens", FSHAction.View, FSHResource.Order, IsBasic: true)  //decentralized
-
+        new("View Orders", FSHAction.View, FSHResource.Order, IsBasic: true)  //decentralized
     };
 
     public static IReadOnlyList<FSHPermission> All { get; } = new ReadOnlyCollection<FSHPermission>(_all);

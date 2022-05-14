@@ -35,11 +35,11 @@ public class CashierController : VersionedApiController
         return Mediator.Send(request, cancellationToken);
     }
 
-    //[HttpGet("{id}")]
-    //[MustHavePermission(FSHAction.View, FSHResource.Tokens)]
-    //[OpenApiOperation("View tokens by user id.", "")]
-    //public Task<TokenDto> GetAsync(string id)
-    //{
-    //    return Mediator.Send(new GetTenantRequest(id));
-    //}
+    [HttpPost("history")]
+    [MustHavePermission(FSHAction.View, FSHResource.GiftMyInfo)]
+    [OpenApiOperation("View list of gift info.", "")]
+    public Task<PaginationResponse<GiftingInfoDto>> GetMyGiftingInfoAsync(CancellationToken cancellationToken)
+    {
+        return Mediator.Send(new SearchMyGiftingInfoRequest(), cancellationToken);
+    }
 }

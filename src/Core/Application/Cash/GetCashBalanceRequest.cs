@@ -1,4 +1,4 @@
-﻿namespace RewardsPlus.Application.Cash;
+﻿    namespace RewardsPlus.Application.Cash;
 
 public class GetCashBalanceRequest : IRequest<double>
 {

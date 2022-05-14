@@ -26,5 +26,5 @@ internal static class TableNames
     public static string Brands = "Brands";
     public static string Cash = "Cash";
     public static string Orders = "Orders";
-
+    public static string GiftingInfo = "GiftingInfo";
 }
