@@ -80,9 +80,13 @@ Any change in Db use following commands
 Project migrator.mssql - delete migrations folder for fresh and no cache migration
 
 > add-migration -context ApplicationDbContext "initialTodo"
+
 > update-database -context ApplicationDbContext 
+
 add-migration -context TenantDbContext "initialTodo"
+
 update-database -context TenantDbContext
+
 
 dotnet ef migrations add initial --project .././Migrators/Migrators.MSSQL/ --context ApplicationDbContext -o Migrations/Application
 
@@ -97,3 +101,8 @@ BaseDbContext
 Hidden dbcontext - 
 IdentityDbContext
 
+pirpep@starmaker.email
+pirpep@1
+
+wenaxa8218@roxoas.com
+wenaxa8218
