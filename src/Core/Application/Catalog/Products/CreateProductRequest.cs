@@ -6,7 +6,7 @@ public class CreateProductRequest : IRequest<Guid>
 {
     public string Name { get; set; } = default!;
     public string? Description { get; set; }
-    public double Rate { get; set; }
+    public decimal Rate { get; set; }
     public Guid BrandId { get; set; }
     public FileUploadRequest? Image { get; set; }
 }

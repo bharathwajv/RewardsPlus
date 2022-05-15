@@ -3,12 +3,12 @@ namespace RewardsPlus.Application.Cash;
 // will be used from  buy Items service
 public class RedeemCashRequest : IRequest<string>
 {
-    public RedeemCashRequest(double amount)
+    public RedeemCashRequest(decimal amount)
     {
         this.Amount = amount;
     }
 
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
 }
 
 public class RedeemCashRequestHandler : IRequestHandler<RedeemCashRequest, string>

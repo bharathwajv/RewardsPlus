@@ -7,7 +7,7 @@ public class GiftCashRequest : IRequest<string>
     public string GiftMessage { get; set; }
     public string? GiftImage { get; set; }
     public bool IsViewed { get; set; }
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
 }
 
 public class GiftCashRequestHandler : IRequestHandler<GiftCashRequest, string>

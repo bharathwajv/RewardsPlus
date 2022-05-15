@@ -7,13 +7,13 @@ public class GiftingInfo : AuditableEntity, IAggregateRoot
     public string GiftMessage { get; private set; }
     public string? GiftImage { get; private set; }
     public bool IsViewed { get; private set; }
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
 
     //for mapster shit to work
     public GiftingInfo()
     {
     }
-    public GiftingInfo(string fromUserEmail, string toUserEmail, string giftMessage, string giftImage = null, bool isViewed = false, double amount = 0)
+    public GiftingInfo(string fromUserEmail, string toUserEmail, string giftMessage, string giftImage = null, bool isViewed = false, decimal amount = 0)
     {
         FromUserEmail = fromUserEmail;
         ToUserEmail = toUserEmail;
@@ -23,7 +23,7 @@ public class GiftingInfo : AuditableEntity, IAggregateRoot
         Amount = amount;
     }
 
-    public GiftingInfo UpdateGiftInfo(string fromUserEmail, string toUserEmail, string giftMessage, string giftImage = null, bool isViewed = false, double amount = 0)
+    public GiftingInfo UpdateGiftInfo(string fromUserEmail, string toUserEmail, string giftMessage, string giftImage = null, bool isViewed = false, decimal amount = 0)
     {
 
         if (fromUserEmail is not null && FromUserEmail?.Equals(fromUserEmail) is not true) FromUserEmail = fromUserEmail;

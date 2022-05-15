@@ -22,7 +22,7 @@ public class CashierController : VersionedApiController
 
     [HttpGet("balance")]
     [OpenApiOperation("View current balance", "")]
-    public Task<double> GetCurrentBalance(CancellationToken cancellationToken)
+    public Task<decimal> GetCurrentBalance(CancellationToken cancellationToken)
     {
         return Mediator.Send(new GetCashBalanceRequest(), cancellationToken);
     }

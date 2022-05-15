@@ -5,7 +5,7 @@ namespace RewardsPlus.Application.Cash;
 public class BuyCashRequest : IRequest<string>
 {
     public BuyMode Mode { get; set; }
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
 }
 
 public class BuyCashRequestHandler : IRequestHandler<BuyCashRequest, string>

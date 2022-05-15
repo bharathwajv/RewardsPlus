@@ -51,7 +51,7 @@ internal class CashierService : ICashierService
         UpdateToUserCash(request, toUser, cancellationToken);
 
         //if success deduct
-        double newBalance = curentUserTokenInfo.Balance - request.Amount;
+        decimal newBalance = curentUserTokenInfo.Balance - request.Amount;
         await _mediator.Send(new RedeemCashRequest(request.Amount), cancellationToken);
 
         await StorGiftingInfo(request, fromUser, cancellationToken);
@@ -98,7 +98,7 @@ internal class CashierService : ICashierService
         bool isSuccess = await paymentGateway?.Sale(new PayRequest(_currentUser?.GetUserEmail(), request.Amount));
         if (isSuccess)
         {
-            double newBalance = await ProceedTransaction(request, cancellationToken);
+            decimal newBalance = await ProceedTransaction(request, cancellationToken);
             return newBalance.ToString();
         }
         else
@@ -107,10 +107,10 @@ internal class CashierService : ICashierService
         }
     }
 
-    private async Task<double> ProceedTransaction(BuyCashRequest request, CancellationToken cancellationToken)
+    private async Task<decimal> ProceedTransaction(BuyCashRequest request, CancellationToken cancellationToken)
     {
         var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
-        double newBalance;
+        decimal newBalance;
         if (curentUserTokenInfo == null)
         {
             newBalance = request.Amount;
@@ -155,7 +155,7 @@ internal class CashierService : ICashierService
     }
 
     //seed for devlopment
-    public async Task<string> SeedAsync(string seedUserEmail, string seedUserId, double amountToSeed)
+    public async Task<string> SeedAsync(string seedUserEmail, string seedUserId, decimal amountToSeed)
     {
         var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == seedUserEmail);
 
@@ -170,7 +170,7 @@ internal class CashierService : ICashierService
     }
 
     //get balance
-    public async Task<double> GetBalanceAsync()
+    public async Task<decimal> GetBalanceAsync()
     {
         var curentUserTokenInfo = _context.Cash?.ToList()?.Find(x => x.UserEmail == _currentUser.GetUserEmail());
         return curentUserTokenInfo?.Balance ?? 0;
