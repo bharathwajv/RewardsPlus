@@ -38,6 +38,8 @@ public class PersonalController : VersionNeutralApiController
     [ApiConventionMethod(typeof(RPApiConventions), nameof(RPApiConventions.Register))]
     public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
     {
+        // NewLearnings
+        // is not {} userId is the same as is not string userId... it's also the same as is not null but at the same time captures the object in question into the variable userId
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
             return Unauthorized();
