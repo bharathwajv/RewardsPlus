@@ -23,7 +23,11 @@ internal static class Startup
                 m.UseDatabase(databaseSettings.DBProvider, databaseSettings.ConnectionString);
             })
             .AddMultiTenant<FSHTenantInfo>()
-                .WithHostStrategy()
+                //GoodIdea 
+                //add below in C:\Windows\System32\Drivers\etc\hosts to enable multi-tenancy with host strategy
+                //127.0.0.1    gamma.rewardshub.com
+                //127.0.0.1    root.rewardshub.com
+                //.WithHostStrategy()
                 .WithClaimStrategy(FSHClaims.Tenant)
                 .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
                 .WithQueryStringStrategy(MultitenancyConstants.TenantIdName)
