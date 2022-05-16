@@ -11,6 +11,7 @@ ToDoLater - ok it explains itself
 
 GoodIdea - great ideas 
 
+NewLearnings - new C# implementations
 
 In progress
 
@@ -83,9 +84,9 @@ Project migrator.mssql - delete migrations folder for fresh and no cache migrati
 
 > update-database -context ApplicationDbContext 
 
-add-migration -context TenantDbContext "initialTodo"
+> add-migration -context TenantDbContext "initialTodo"
 
-update-database -context TenantDbContext
+> update-database -context TenantDbContext
 
 
 dotnet ef migrations add initial --project .././Migrators/Migrators.MSSQL/ --context ApplicationDbContext -o Migrations/Application
