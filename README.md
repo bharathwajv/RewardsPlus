@@ -19,7 +19,9 @@ In progress
 
 // Signar noti on new purchase or order status change
 
-//Employee monthly subscriptions from employerr
+// Employee monthly subscriptions from employerr
+
+// Loyalty integration
 
 // complate ToDoLater stuffs in code
 
