@@ -1,6 +1,8 @@
 # RewardsPlus
 Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
+_OPEN_SOURCE_
+
 Keywords in Code
 
 OFD - only for development 
@@ -15,6 +17,7 @@ NewLearnings - new C# implementations
 
 In progress
 
+// Turn into full fledged loyalty integration which handles cash flow
 // Hang fire to dispatch items - delivery boyservice
 
 // Signar noti on new purchase or order status change
