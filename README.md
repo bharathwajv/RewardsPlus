@@ -18,13 +18,14 @@ NewLearnings - new C# implementations
 In progress
 
 // Turn into full fledged loyalty integration which handles cash flow
+
+// Instant notification to clients on any changes
+
 // Hang fire to dispatch items - delivery boyservice
 
 // Signar noti on new purchase or order status change
 
 // Employee monthly subscriptions from employerr
-
-// Loyalty integration
 
 // complate ToDoLater stuffs in code
 
