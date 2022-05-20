@@ -1,7 +1,7 @@
 # RewardsPlus
 Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
-_OPEN_SOURCE_
+_OPEN_SOURCE_ loyalty platform
 
 Keywords in Code
 
