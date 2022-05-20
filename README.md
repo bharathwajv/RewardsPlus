@@ -17,6 +17,8 @@ NewLearnings - new C# implementations
 
 In progress
 
+//Support flutter client 
+
 // Turn into full fledged loyalty integration which handles cash flow
 
 // Instant notification to clients on any changes
