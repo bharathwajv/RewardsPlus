@@ -1,6 +1,8 @@
 # RewardsPlus
 Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
+_OPEN_SOURCE_ loyalty platform
+
 Keywords in Code
 
 OFD - only for development 
@@ -15,11 +17,17 @@ NewLearnings - new C# implementations
 
 In progress
 
+//Support flutter client 
+
+// Turn into full fledged loyalty integration which handles cash flow
+
+// Instant notification to clients on any changes
+
 // Hang fire to dispatch items - delivery boyservice
 
 // Signar noti on new purchase or order status change
 
-//Employee monthly subscriptions from employerr
+// Employee monthly subscriptions from employerr
 
 // complate ToDoLater stuffs in code
 
