@@ -22,6 +22,7 @@ internal class ApplicationDbInitializer
 
     public async Task InitializeAsync(CancellationToken cancellationToken)
     {
+        var tst = _dbContext.Database.GetMigrations();
         if (_dbContext.Database.GetMigrations().Any())
         {
             if ((await _dbContext.Database.GetPendingMigrationsAsync(cancellationToken)).Any())
