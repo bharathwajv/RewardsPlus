@@ -128,7 +128,7 @@ internal partial class UserService : IUserService
             .FirstOrDefaultAsync(cancellationToken);
 
         _ = user ?? throw new NotFoundException(_t["User Not Found."]);
-
+        //var tst = (await _userManager.Users.Where(u => u.Id == user.Id)). GetRolesAsync();
         return user.Adapt<UserDetailsDto>();
     }
 

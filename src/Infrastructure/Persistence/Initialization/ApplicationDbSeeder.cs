@@ -33,6 +33,7 @@ internal class ApplicationDbSeeder
     {
         await SeedRolesAsync(dbContext);
         await SeedAdminUserAsync();
+        await SeedBasicUserAsync();
         await _seederRunner.RunSeedersAsync(cancellationToken);
         //ToDoLater  - hangfire run recoruing cron job 
     }
@@ -124,5 +125,40 @@ internal class ApplicationDbSeeder
 
         // buy some cash for admin - only for devlopment
         await _cashierService.SeedAsync(adminUser.Email, adminUser.Id, 10000m);  // resets to 10000.00 each run
+    }
+
+    private async Task SeedBasicUserAsync()
+    {
+        string basicUserEmail = $"user@{_currentTenant.Id.Trim()}.com";
+        if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == _currentTenant.AdminEmail)
+            is not ApplicationUser basicUser)
+        {
+            string basicUserName = $"{_currentTenant.Id.Trim()}.{FSHRoles.Basic}".ToLowerInvariant();
+            basicUser = new ApplicationUser
+            {
+                Email = basicUserEmail,
+                UserName = basicUserName,
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                NormalizedEmail = basicUserEmail?.ToUpperInvariant(),
+                NormalizedUserName = basicUserName.ToUpperInvariant(),
+                IsActive = true
+            };
+
+            _logger.LogInformation("Seeding Default Basic User for '{tenantId}' Tenant.", _currentTenant.Id);
+            var password = new PasswordHasher<ApplicationUser>();
+            basicUser.PasswordHash = password.HashPassword(basicUser, MultitenancyConstants.DefaultPassword);
+            await _userManager.CreateAsync(basicUser);
+        }
+
+        // Assign role to user
+        if (!await _userManager.IsInRoleAsync(basicUser, FSHRoles.Basic))
+        {
+            _logger.LogInformation("Assigning Basic Role to Basic User for '{tenantId}' Tenant.", _currentTenant.Id);
+            await _userManager.AddToRoleAsync(basicUser, FSHRoles.Basic);
+        }
+
+        // buy some cash for admin - only for devlopment
+        await _cashierService.SeedAsync(basicUser.Email, basicUser.Id, 10000m);  // resets to 10000.00 each run
     }
 }

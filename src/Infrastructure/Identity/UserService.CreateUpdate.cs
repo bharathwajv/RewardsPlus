@@ -106,11 +106,11 @@ internal partial class UserService
         {
             Email = request.Email,
             UserName = request.UserName,
-            PhoneNumber = request.PhoneNumber,
+            PhoneNumber = request?.PhoneNumber,
             IsActive = true
         };
 
-        var result = await _userManager.CreateAsync(user, request.Password);
+        var result = await _userManager.CreateAsync(user, request?.Password);
         if (!result.Succeeded)
         {
             throw new InternalServerException(_t["Validation Errors Occurred."], result.GetErrors(_t));
