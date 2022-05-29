@@ -1,7 +1,7 @@
 {
   "CorsSettings": {
     "Angular": "http://localhost:4200",
-    "Blazor": "https://localhost:5002;http://wenaxa8218-001-site1.btempurl.com",
-    "React": "http://localhost:3000"
+    "Blazor": "https://localhost:5002;http://wenaxa8218-001-site1.btempurl.com;https://root-rewards.herokuapp.com/",
+    "React": "http://localhost:3000;https://root-rewards.herokuapp.com/"
   }
 }
