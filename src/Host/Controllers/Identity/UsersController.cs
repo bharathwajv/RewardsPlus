@@ -117,5 +117,14 @@ public class UsersController : VersionNeutralApiController
         return _userService.ResetPasswordAsync(request);
     }
 
+    [HttpDelete("{id}")]
+    [MustHavePermission(FSHAction.Delete, FSHResource.Users)]
+    [OpenApiOperation("Delete a user.", "")]
+    public async Task<ActionResult> DeleteAsync(string id, CancellationToken cancellationToken)
+    {
+        await _userService.DeleteAsync(id, cancellationToken);
+        return Ok();
+    }
+
     private string GetOriginFromRequest() => $"{Request.Scheme}://{Request.Host.Value}{Request.PathBase.Value}";
 }

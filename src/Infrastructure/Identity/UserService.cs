@@ -152,4 +152,23 @@ internal partial class UserService : IUserService
 
         await _events.PublishAsync(new ApplicationUserUpdatedEvent(user.Id));
     }
+
+    //delete
+    public async Task DeleteAsync(string userId, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.Where(u => u.Id == userId).FirstOrDefaultAsync(cancellationToken);
+
+        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
+
+        bool isAdmin = await _userManager.IsInRoleAsync(user, FSHRoles.Admin);
+        if (isAdmin)
+        {
+            throw new ConflictException(_t["Administrators Profile cannot be deleted"]);
+        }
+
+        await _userManager.DeleteAsync(user);
+
+        // ToDoLater : Delete user's profile picture
+        // ToDoLater : await _events.PublishAsync(new ApplicationUserDeletedEvent(user.Id));
+    }
 }
