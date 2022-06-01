@@ -17,7 +17,9 @@ NewLearnings - new C# implementations
 
 In progress
 
-//Support flutter client 
+// Infra changes : host in sub domain dynamically - test tenant
+
+// Support flutter client (or react)
 
 // Turn into full fledged loyalty integration which handles cash flow
 
