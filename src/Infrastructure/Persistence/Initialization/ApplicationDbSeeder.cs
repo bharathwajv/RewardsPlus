@@ -130,7 +130,7 @@ internal class ApplicationDbSeeder
     private async Task SeedBasicUserAsync()
     {
         string basicUserEmail = $"user@{_currentTenant.Id.Trim()}.com";
-        if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == _currentTenant.AdminEmail)
+        if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == basicUserEmail)
             is not ApplicationUser basicUser)
         {
             string basicUserName = $"{_currentTenant.Id.Trim()}.{FSHRoles.Basic}".ToLowerInvariant();

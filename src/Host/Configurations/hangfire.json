@@ -21,8 +21,8 @@
     },
     "Storage": {
       "StorageProvider": "mssql",
-      //"ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=RewardsDev1;Integrated Security=True;MultipleActiveResultSets=True",
-      "ConnectionString": "Data Source=sql8003.site4now.net;Initial Catalog=db_a859de_rewards;User ID=db_a859de_rewards_admin;Password=pirpep@1",
+      "ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=RewardsDev1;Integrated Security=True;MultipleActiveResultSets=True",
+      //"ConnectionString": "Data Source=sql8003.site4now.net;Initial Catalog=db_a859de_rewards;User ID=db_a859de_rewards_admin;Password=pirpep@1",
       "Options": {
         "CommandBatchMaxTimeout": "00:05:00",
         "QueuePollInterval": "00:00:01",
