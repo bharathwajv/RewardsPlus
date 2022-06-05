@@ -25,6 +25,9 @@ In progress
 
 // Instant notification to clients on any changes
 
+// Tenant management - subscription model
+
+
 // Hang fire to dispatch items - delivery boyservice
 
 // Signar noti on new purchase or order status change
