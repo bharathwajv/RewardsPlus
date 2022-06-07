@@ -2,186 +2,557 @@
 	"info": {
 		"_postman_id": "72eb9705-a4cb-4c8a-a2f1-16a7584a1c2a",
 		"name": "RewardsPlus",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14432935"
 	},
 	"item": [
 		{
 			"name": "Identity",
 			"item": [
 				{
-					"name": "User",
+					"name": "login token",
 					"item": [
 						{
-							"name": "get-token user",
-							"event": [
+							"name": "Admin",
+							"item": [
 								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var jsonData = pm.response.json();\r",
-											"pm.collectionVariables.set(\"token\", jsonData.token);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									},
-									{
-										"key": "Accept-Language",
-										"value": "en-US",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"user@root.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/tokens",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"tokens"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-my-permissions Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/personal/permissions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"personal",
-										"permissions"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-my-profile Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/personal/profile",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"personal",
-										"profile"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "forgot-password Copy",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
+									"name": "get-token",
+									"event": [
 										{
-											"key": "token",
-											"value": "",
-											"type": "string"
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"pm.collectionVariables.set(\"token\", jsonData.token);"
+												],
+												"type": "text/javascript"
+											}
 										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admin@root.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users/forgot-password",
-									"host": [
-										"{{url}}"
 									],
-									"path": [
-										"users",
-										"forgot-password"
-									]
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en-US",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"admin@root.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/tokens",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"tokens"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register-user",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"user1@root.com\",\r\n  \"userName\": \"user1.user\",\r\n  \"password\": \"123Pa$$word!\",\r\n  \"confirmPassword\": \"123Pa$$word!\",\r\n  \"phoneNumber\": \"99999888850\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-roles",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/roles",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"roles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create-role",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Manager\",\r\n    \"description\":\"tadaaaa!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/roles",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"roles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-my-permissions",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/personal/permissions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"permissions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-my-profile",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/personal/profile",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"profile"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update-profile",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"id\":\"885ba048-5db0-485e-8af2-40339deb495b\",\"userName\":\"ggfftgy\",\"phoneNumber\":\"89989\",\"email\":\"admin@root.com\",\"image\":{\"name\":\"885ba048-5db0-485e-8af2-40339deb495b-5331f4e6fc9c4c32bebc9fbdabe342ff\",\"extension\":\".png\",\"data\":\"data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q==\"},\"deleteCurrentImage\":false}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/personal/profile",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"profile"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update-role-permissions",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"RoleId\": \"e59e5799-2bcc-4ad1-8237-f189a0b5b236\",\r\n    \"Permissions\": [\"Permissions.Brands.BJ\"]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/roles/17c9fb87-a92f-404d-b2e4-30ce88f5f6b6/permissions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"roles",
+												"17c9fb87-a92f-404d-b2e4-30ce88f5f6b6",
+												"permissions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-current-user-audit-logs",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/personal/logs",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"logs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "forgot-password",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"user@root.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/forgot-password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"forgot-password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reset-password",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"admin@root.com\",\r\n    \"password\":\"someNewPasswordHere\",\r\n    \"token\": \"CfDJ8PIF9j3oEv9OhQoxaFuWSdqg0nCRves79yhS9E5ZA3evRM2mQKaz48ozNoN3pXFouPrbwxoKC+TmgFJFUceu91PkOd3XpWf+y7ebG2hb7FDfKQCPrpv57h+K8K6OFwQWKabz/M9VaMk6Kn38/ECBXIcdG3gOY8sOlJOcFbO59D6x2j99qg2z6ZAzGPpJKDz/iiZJqMFEn4lIc0IFia97yYyzPLp/qS/IauUeMvhcoKfuvibqm7ODNH9n7Z2PvhrAJw==\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/reset-password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"reset-password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "refresh-token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"pm.collectionVariables.set(\"token\", jsonData.token);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en-US",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImExNDZkNTY4LTRmZmYtNDhmZS1iNTc2LWIxYTM2ZjBlMjIzMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHJvb3QuY29tIiwiZnVsbE5hbWUiOiJyb290IEFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJvb3QiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiQWRtaW4iLCJpcEFkZHJlc3MiOiIwLjAuMC4xIiwidGVuYW50Ijoicm9vdCIsImltYWdlX3VybCI6IkZpbGVzL0ltYWdlcy9BcHBsaWNhdGlvblVzZXIvYTE0NmQ1Njg0ZmZmNDhmZWI1NzZiMWEzNmYwZTIyMzJlYzE3MWI4MGY0MzI0NzIzOThkNDVjYTFjZGQ0YTAwZi5wbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjUwNjQ2ODU5MiIsImV4cCI6MTY0NDYwMjE4NH0.a-y0WrNLQ6bnafZn91sUm_oIsHT8GD4R9w7Id2afxME\",\r\n    \"refreshToken\": \"vF34oRJ5LgK15qPT/Xf4DPQuSJxu5UP1pN/8hV6bSQE=\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/tokens/refresh",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"tokens",
+												"refresh"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "reset-password Copy",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admin@root.com\",\r\n    \"password\":\"someNewPasswordHere\",\r\n    \"token\": \"CfDJ8PIF9j3oEv9OhQoxaFuWSdqg0nCRves79yhS9E5ZA3evRM2mQKaz48ozNoN3pXFouPrbwxoKC+TmgFJFUceu91PkOd3XpWf+y7ebG2hb7FDfKQCPrpv57h+K8K6OFwQWKabz/M9VaMk6Kn38/ECBXIcdG3gOY8sOlJOcFbO59D6x2j99qg2z6ZAzGPpJKDz/iiZJqMFEn4lIc0IFia97yYyzPLp/qS/IauUeMvhcoKfuvibqm7ODNH9n7Z2PvhrAJw==\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+							"name": "User",
+							"item": [
+								{
+									"name": "get-token user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"pm.collectionVariables.set(\"token\", jsonData.token);"
+												],
+												"type": "text/javascript"
+											}
 										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users/reset-password",
-									"host": [
-										"{{url}}"
 									],
-									"path": [
-										"users",
-										"reset-password"
-									]
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en-US",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"user@root.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/tokens",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"tokens"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-my-permissions Copy",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/personal/permissions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"permissions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-my-profile Copy",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/personal/profile",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"personal",
+												"profile"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "forgot-password Copy",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"admin@root.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/forgot-password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"forgot-password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reset-password Copy",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "tenant",
+												"value": "root",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"admin@root.com\",\r\n    \"password\":\"someNewPasswordHere\",\r\n    \"token\": \"CfDJ8PIF9j3oEv9OhQoxaFuWSdqg0nCRves79yhS9E5ZA3evRM2mQKaz48ozNoN3pXFouPrbwxoKC+TmgFJFUceu91PkOd3XpWf+y7ebG2hb7FDfKQCPrpv57h+K8K6OFwQWKabz/M9VaMk6Kn38/ECBXIcdG3gOY8sOlJOcFbO59D6x2j99qg2z6ZAzGPpJKDz/iiZJqMFEn4lIc0IFia97yYyzPLp/qS/IauUeMvhcoKfuvibqm7ODNH9n7Z2PvhrAJw==\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/reset-password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"reset-password"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Admin",
-					"item": [
+							]
+						},
 						{
-							"name": "get-token",
+							"name": "super admin",
 							"event": [
 								{
 									"listen": "test",
@@ -233,240 +604,7 @@
 							"response": []
 						},
 						{
-							"name": "register-user",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"user1@root.com\",\r\n  \"userName\": \"user1.user\",\r\n  \"password\": \"123Pa$$word!\",\r\n  \"confirmPassword\": \"123Pa$$word!\",\r\n  \"phoneNumber\": \"99999888850\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-roles",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/roles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"roles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create-role",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Manager\",\r\n    \"description\":\"tadaaaa!\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/roles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"roles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-my-permissions",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/personal/permissions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"personal",
-										"permissions"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-my-profile",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/personal/profile",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"personal",
-										"profile"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update-role-permissions",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"RoleId\": \"e59e5799-2bcc-4ad1-8237-f189a0b5b236\",\r\n    \"Permissions\": [\"Permissions.Brands.BJ\"]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/roles/17c9fb87-a92f-404d-b2e4-30ce88f5f6b6/permissions",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"roles",
-										"17c9fb87-a92f-404d-b2e4-30ce88f5f6b6",
-										"permissions"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get-current-user-audit-logs",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/personal/logs",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"personal",
-										"logs"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "forgot-password",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"user@root.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users/forgot-password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users",
-										"forgot-password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "reset-password",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "tenant",
-										"value": "root",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admin@root.com\",\r\n    \"password\":\"someNewPasswordHere\",\r\n    \"token\": \"CfDJ8PIF9j3oEv9OhQoxaFuWSdqg0nCRves79yhS9E5ZA3evRM2mQKaz48ozNoN3pXFouPrbwxoKC+TmgFJFUceu91PkOd3XpWf+y7ebG2hb7FDfKQCPrpv57h+K8K6OFwQWKabz/M9VaMk6Kn38/ECBXIcdG3gOY8sOlJOcFbO59D6x2j99qg2z6ZAzGPpJKDz/iiZJqMFEn4lIc0IFia97yYyzPLp/qS/IauUeMvhcoKfuvibqm7ODNH9n7Z2PvhrAJw==\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users/reset-password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users",
-										"reset-password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "refresh-token",
+							"name": "user",
 							"event": [
 								{
 									"listen": "test",
@@ -498,7 +636,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImExNDZkNTY4LTRmZmYtNDhmZS1iNTc2LWIxYTM2ZjBlMjIzMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHJvb3QuY29tIiwiZnVsbE5hbWUiOiJyb290IEFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJvb3QiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiQWRtaW4iLCJpcEFkZHJlc3MiOiIwLjAuMC4xIiwidGVuYW50Ijoicm9vdCIsImltYWdlX3VybCI6IkZpbGVzL0ltYWdlcy9BcHBsaWNhdGlvblVzZXIvYTE0NmQ1Njg0ZmZmNDhmZWI1NzZiMWEzNmYwZTIyMzJlYzE3MWI4MGY0MzI0NzIzOThkNDVjYTFjZGQ0YTAwZi5wbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IjUwNjQ2ODU5MiIsImV4cCI6MTY0NDYwMjE4NH0.a-y0WrNLQ6bnafZn91sUm_oIsHT8GD4R9w7Id2afxME\",\r\n    \"refreshToken\": \"vF34oRJ5LgK15qPT/Xf4DPQuSJxu5UP1pN/8hV6bSQE=\"\r\n}",
+									"raw": "{\r\n    \"email\":\"user@root.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -506,15 +644,131 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/tokens/refresh",
+									"raw": "{{url}}/tokens",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"tokens",
-										"refresh"
+										"tokens"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "tenant admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "tenant",
+										"value": "ibm",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-US",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@ibm.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/tokens",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "tenant user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "tenant",
+										"value": "gamma",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-US",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"user@gamma.com\",\r\n    \"password\":\"123Pa$$word!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/tokens",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User controller",
+					"item": [
+						{
+							"name": "users list",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}
@@ -629,7 +883,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"623e0000-3f5a-3c7c-0502-08d9b2523534\",\r\n    \"name\":\"Product Test to max name length to be exactly or around 75 which is the max\",\r\n    \"description\":\"Something more Cool!\",\r\n    \"rate\":5,\r\n    \"brandId\":\"623e0000-3f5a-3c7c-e077-08d9b24e1641\"\r\n}",
+									"raw": "{\r\n    \"id\": \"01ee29cd-5b81-4b7f-575c-08da35db7567\",\r\n    \"name\":\"Product Test to max name length to be exactly or around 75 which is the max\",\r\n    \"description\":\"Something more Cool!\",\r\n    \"rate\":5,\r\n    \"brandId\":\"9c9d13a7-288c-4141-0420-08da35db6a5d\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -637,14 +891,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/v1/products/623e0000-3f5a-3c7c-0502-08d9b2523534",
+									"raw": "{{url}}/v1/products/01ee29cd-5b81-4b7f-575c-08da35db7567",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"v1",
 										"products",
-										"623e0000-3f5a-3c7c-0502-08d9b2523534"
+										"01ee29cd-5b81-4b7f-575c-08da35db7567"
 									]
 								}
 							},
@@ -916,7 +1170,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Gamma\",\r\n    \"id\":\"gamma\",\r\n    \"adminEmail\":\"admin@gamma.com\",\r\n    \"connectionString\":\"Data Source=(localdb)\\\\mssqllocaldb;Initial Catalog=betaDb0045;Integrated Security=True;MultipleActiveResultSets=True\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"tst\",\r\n    \"id\":\"tst\",\r\n    \"adminEmail\":\"admin@tst.com\",\r\n    \"connectionString\":\"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1133,7 +1387,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ToEmailId\": \"admin@root.com\",\r\n    \"Amount\": 20.00\r\n}",
+							"raw": "{\r\n    \"Amount\": 25.00,\r\n    \"ToUserEmail\": \"user@root.com\",\r\n    \"GiftMessage\" : \"Thanks for your contribution\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1181,12 +1435,90 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "who gifted me history",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"keyword\": \"\",\r\n  \"pageNumber\": 0,\r\n  \"pageSize\": 100,\r\n  \"orderBy\": [\r\n    \"id\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/Cashier/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"Cashier",
+								"history"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "OderOperations",
 			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"keyword\": \"\",\r\n  \"pageNumber\": 0,\r\n  \"pageSize\": 100,\r\n  \"orderBy\": [\r\n    \"id\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/order/search",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"order",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-order-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/products/623e0000-3f5a-3c7c-0502-08d9b2523534",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"products",
+								"623e0000-3f5a-3c7c-0502-08d9b2523534"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "place-order",
 					"request": {
@@ -1216,13 +1548,13 @@
 					"response": []
 				},
 				{
-					"name": "search",
+					"name": "update-order status",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"keyword\": \"\",\r\n  \"pageNumber\": 0,\r\n  \"pageSize\": 100,\r\n  \"orderBy\": [\r\n    \"id\"\r\n  ]\r\n}",
+							"raw": "{\r\n    \"Id\": \"7E6B04BA-56F5-4242-8A63-08DA337BD37C\",\r\n    \"Status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1230,14 +1562,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/v1/order/search",
+							"raw": "{{url}}/v1/Order/update-status",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
-								"order",
-								"search"
+								"Order",
+								"update-status"
 							]
 						}
 					},
