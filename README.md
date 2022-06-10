@@ -113,8 +113,6 @@ BaseDbContext
 Hidden dbcontext - 
 IdentityDbContext
 
-pirpep@starmaker.email
-pirpep@1
 
 wenaxa8218@roxoas.com
 wenaxa8218
