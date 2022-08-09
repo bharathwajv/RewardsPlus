@@ -1,8 +1,6 @@
 # RewardsPlus
 Rewards Hub for any org - SAAS multi tenant - API Project - Loyalty integrations - Employee monthly subscriptions
 
-_OPEN_SOURCE_ loyalty platform
-
 Keywords in Code
 
 OFD - only for development 
@@ -115,8 +113,6 @@ BaseDbContext
 Hidden dbcontext - 
 IdentityDbContext
 
-pirpep@starmaker.email
-pirpep@1
 
 wenaxa8218@roxoas.com
 wenaxa8218
