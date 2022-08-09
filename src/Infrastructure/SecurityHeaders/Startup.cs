@@ -11,6 +11,7 @@ internal static class Startup
 
         if (settings?.Enable is true)
         {
+            // NewLearnings - request deligate (Use, Map, Run)
             app.Use(async (context, next) =>
  {
                 if (!context.Response.HasStarted)

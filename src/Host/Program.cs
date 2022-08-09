@@ -31,6 +31,8 @@ try
 
     app.UseInfrastructure(builder.Configuration);
     app.MapEndpoints();
+
+    // NewLearnings - request deligate (Use, Map, Run)
     app.Run();
 
 }

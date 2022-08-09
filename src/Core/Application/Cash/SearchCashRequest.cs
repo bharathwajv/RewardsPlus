@@ -2,7 +2,7 @@
 
 // temp class search Cash bd
 
-// AskExperts can we use Domain.Catalog.Cash here 
+// AskExperts can we use Domain.Catalog.Cash here
 public class SearchCashRequest : PaginationFilter, IRequest<PaginationResponse<CashDto>>
 {
 }
